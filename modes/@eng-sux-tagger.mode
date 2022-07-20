@@ -1,0 +1,1 @@
+lt-proc -w '/Users/himanshu/GSOC/Apertium_MT/apertium-sux-eng/eng-sux.automorf-untrimmed.bin' | cg-proc -w '/Users/himanshu/GSOC/Apertium_MT/apertium-sux-eng/eng-sux.rlx.bin' | apertium-tagger -g $2 '/Users/himanshu/GSOC/Apertium_MT/apertium-sux-eng/eng-sux.prob'
