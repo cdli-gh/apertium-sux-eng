@@ -1,0 +1,10 @@
+{
+    "sux-eng": {
+        "input": "sux-eng-input.txt",
+        "mode": "sux-eng"
+    },
+    "eng-sux": {
+        "input": "eng-sux-input.txt",
+        "mode": "eng-sux"
+    }
+}

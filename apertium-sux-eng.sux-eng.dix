@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='us-ascii'?>
+<dictionary>
+<sdefs>
+    <sdef n="n" 	c="Noun"/>
+    <sdef n="np" 	c="Proper name"/>
+    <sdef n="pr" 	c="Preposition"/>
+    <sdef n="vblex" 	c="Verb"/>
+    <sdef n="vbmod" 	c="Modal verb"/>
+    <sdef n="vaux" 	c="Auxiliary verb"/>
+    <sdef n="vbser" 	c="Verb 'to be'"/>
+    <sdef n="vbhaver" 	c="Verb 'to have'"/>
+    <sdef n="vbdo" 	c="Verb 'to do'"/>
+    <sdef n="det" 	c="Determiner"/>
+    <sdef n="predet" 	c="Predeterminer"/>
+    <sdef n="prn" 	c="Pronoun"/>
+    <sdef n="cnjcoo" 	c="Coordinating conjunction"/>
+    <sdef n="cnjsub" 	c="Subordinating conjunction"/>
+    <sdef n="p1" 	c="First person"/>
+    <sdef n="p2" 	c="Second person"/>
+    <sdef n="p3" 	c="Third person"/>
+    <sdef n="attr" 	c="Attributive"/>
+    <sdef n="sg" 	c="Singular"/>
+    <sdef n="pl" 	c="Plural"/>
+    <sdef n="sp" 	c="Singular / plural"/>
+    <sdef n="m" 	c="Masculine"/>
+    <sdef n="f" 	c="Feminine"/>
+    <sdef n="mf" 	c="Masculine / feminine"/>
+    <sdef n="nt" 	c="Neuter"/>
+    <sdef n="mfn" 	c="Masculine / feminine / neuter"/>
+    <sdef n="def" 	c="Definite"/>
+    <sdef n="ind" 	c="Indefinite"/>
+    <sdef n="ref" 	c="Reflexive"/>
+    <sdef n="dem" 	c="Demonstrative"/>
+    <sdef n="top" 	c="Toponym"/>
+    <sdef n="al" 	c="Altres (other)"/>
+    <sdef n="ant" 	c="Anthroponym (first name)"/>
+    <sdef n="cog" 	c="Cognomen (family name)"/>
+    <sdef n="prs" 	c="Present subjunctive"/>
+    <sdef n="pres" 	c="Present (tense)"/>
+    <sdef n="past" 	c="Past"/>
+    <sdef n="pii" 	c="Past indicative"/>
+    <sdef n="pis" 	c="Past subjunctive"/>
+    <sdef n="imp" 	c="Imperative"/>
+    <sdef n="inf" 	c="Infinitive"/>
+    <sdef n="pp" 	c="Past participle"/>
+    <sdef n="subs" 	c="Verbal noun"/>
+    <sdef n="pprs" 	c="Present participle"/>
+    <sdef n="ger" 	c="Gerund"/>
+    <sdef n="cm" 	c="Comma"/>
+    <sdef n="sent" 	c="End of sentence marker"/>
+    <sdef n="quot" 	c="Quote mark"/>
+    <sdef n="lquot" 	c="Quote mark left"/>
+    <sdef n="rquot" 	c="Quote mark right"/>
+    <sdef n="abbr" 	c="Abbreviation"/>
+    <sdef n="adj" 	c="Adjective"/>
+    <sdef n="adv" 	c="Adverb"/>
+    <sdef n="preadv" 	c="Pre-adverb"/>
+    <sdef n="rel" 	c="Relative"/>
+    <sdef n="itg" 	c="Interrogative"/>
+    <sdef n="cnjadv" 	c="Adverbial conjunction"/>
+    <sdef n="comp" 	c="Comparative"/>
+    <sdef n="sup" 	c="Superlative"/>
+    <sdef n="pred" 	c="Predicative"/>
+    <sdef n="ord" 	c="Ordinal"/>
+    <sdef n="qnt" 	c="Quantifier"/>
+    <sdef n="num" 	c="Numeral / Number"/>
+    <sdef n="pron" 	c="Pronoun"/>
+    <sdef n="ij" 	c="Interjection"/>
+    <sdef n="lpar" 	c="Left parenthesis"/>
+    <sdef n="rpar" 	c="Right parenthesis"/>
+    <sdef n="apos" 	c="Apostrophe"/>
+    <sdef n="percent" 	c="Percentage"/>
+    <sdef n="guio" 	c="Hyphen"/>
+    <sdef n="sep" 	c="Seperable verb"/>
+    <sdef n="sint" 	c="Synthetic adjective"/>
+    <sdef n="nom" 	c="Nominative"/>
+    <sdef n="gen" 	c="Genitive"/>
+    <sdef n="acr" 	c="Acronym"/>
+    <sdef n="org" 	c="Organisation"/>
+    <sdef n="tn" 	c=""/>
+    <sdef n="nn" 	c=""/>
+    <sdef n="aa" 	c="Animate"/>
+    <sdef n="an" 	c="Inanimate"/>
+    <sdef n="pos" 	c="Possessive"/>
+    <sdef n="lquest" 	c="left question mark"/>
+    <sdef n="obj" 	c="Object"/>
+    <sdef n="subj" 	c="Subject"/>
+    <sdef n="pers" 	c="Personal (pronoun)"/>
+    <sdef n="file" 	c="Filename"/>
+  </sdefs>
+
+<section id="main" type="standard">
+
+<e><p><l>lugal<s n="n"/></l><r>king<s n="n"/></r></p></e>
+<e><p><l>gal<s n="vblex"/></l><r>great<s n="vblex"/></r></p></e>
+
+
+
+</section>
+</dictionary>

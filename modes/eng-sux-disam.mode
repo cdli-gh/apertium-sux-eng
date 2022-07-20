@@ -1,0 +1,1 @@
+lt-proc -w '/Users/himanshu/GSOC/Apertium_MT/apertium-sux-eng/eng-sux.automorf.bin' | cg-proc -w -t '/Users/himanshu/GSOC/Apertium_MT/apertium-sux-eng/eng-sux.rlx.bin'
