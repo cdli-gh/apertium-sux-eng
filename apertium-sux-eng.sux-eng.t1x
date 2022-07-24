@@ -1,21 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transfer default="chunk">
+
   <section-def-cats>
-    <def-cat n="nom">
+
+    <def-cat n="Nouns">
       <cat-item tags="n.*"/>
     </def-cat>
-    <def-cat n="sent">
-      <cat-item tags="sent"/>
+
+    <def-cat n="Verbs">
+      <cat-item tags="vblex.*"/>
     </def-cat>
+
+    <def-cat n="Proper_Names">
+      <cat-item tags="np.*"/>
+    </def-cat>
+
   </section-def-cats>
 
+
+
   <section-def-attrs>
-    <def-attr n="a_cas">
-      <attr-item tags="nom"/>
+    <def-attr n="N">
+      <attr-item tags="n"/>
     </def-attr>
+    <def-attr n="V">
+      <attr-item tags="vblex"/>
+    </def-attr>
+    <def-attr n="P">
+      <attr-item tags="prn"/>
+    </def-attr>
+    <def-attr n="PN">
+      <attr-item tags="np"/>
+    </def-attr>
+
+
+
+    <def-attr n="sg_pl">
+      <attr-item tags="sg"/>
+      <attr-item tags="pl"/>
+    </def-attr>
+
+    <def-attr n="pres_past">
+      <attr-item tags="pres"/>
+      <attr-item tags="past"/>
+    </def-attr>
+
+    <def-attr n="sub_obj">
+      <attr-item tags="subj"/>
+      <attr-item tags="obj"/>
+    </def-attr>
+
+
+    <def-attr n="person">
+      <attr-item tags="p1"/>
+      <attr-item tags="p2"/>
+      <attr-item tags="p3"/>
+    </def-attr>
+
+    <def-attr n="m_f">
+      <attr-item tags="m"/>
+      <attr-item tags="f"/>
+      <attr-item tags="mf"/>
+    </def-attr>
+
   </section-def-attrs>
 
-  <section-def-vars>
+  <!-- <section-def-vars>
     <def-var n="number"/>
   </section-def-vars>
 
@@ -26,10 +76,10 @@
             <lit v=""/>
           </let>
     </def-macro>
-  </section-def-macros>
+  </section-def-macros> -->
 
   <section-rules>
-    <rule comment="REGLA: SENT">
+    <!-- <rule comment="REGLA: SENT">
       <pattern>
         <pattern-item n="sent"/>
       </pattern>
@@ -45,9 +95,69 @@
           </chunk>
         </out>
       </action>
+    </rule> -->
+
+
+    <rule comment = "for proper names, just take the lemma of the source language">
+      <pattern>
+        <pattern-item n="Proper_Names"/>
+      </pattern>
+      <action>
+        <out> 
+            <lu>
+                <clip pos="1" side="sl" part="lem"/>
+            </lu> 
+        </out>
+      </action>
     </rule>
+
+    <rule comment = "for nons, simply putting singular and plurality of nouns along with genative">
+      <pattern>
+        <pattern-item n="Nouns"/>
+      </pattern>
+      <action>
+        <out> 
+            <lu>
+                <clip pos="1" side="tl" part="lem"/>
+                <clip pos="1" side="tl" part="N"/>
+                <clip pos="1" side="sl" part="sg_pl"/>
+            </lu> 
+        </out>
+      </action>
+    </rule>
+
+    <rule comment = "for verbs, pronoun, person, tense etc">
+      <pattern>
+        <pattern-item n="Verbs"/>
+      </pattern>
+      <action>
+        <out> 
+            <lu>
+                <lit v="prpers"/>
+                <clip pos="1" side="tl" part="P"/>
+                <clip pos="1" side="sl" part="sub_obj"/>
+                <clip pos="1" side="sl" part="person"/>
+                <clip pos="1" side="sl" part="m_f"/>
+                <clip pos="1" side="sl" part="sg_pl"/>
+            </lu> 
+        <b/>
+            <lu>
+                <clip pos="1" side="tl" part="lem"/>
+                <clip pos="1" side="tl" part="V"/>
+                <clip pos="1" side="sl" part="pres_past"/>
+            </lu> 
+        </out>
+      </action>
+    </rule>
+
+
+
   </section-rules>
 </transfer>
+
+
+
+
 
 <!--
 Resources:
