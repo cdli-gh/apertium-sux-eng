@@ -91,9 +91,14 @@
 
 <section id="main" type="standard">
 
+<!-- Nouns -->
 <e><p><l>lugal<s n="n"/></l><r>king<s n="n"/></r></p></e>
-<e><p><l>gal<s n="vblex"/></l><r>great<s n="vblex"/></r></p></e>
+<e><p><l>e2<s n="n"/></l><r>house<s n="n"/></r></p></e>
 
+
+<!-- verbs -->
+<e><p><l>gal<s n="vblex"/></l><r>great<s n="vblex"/></r></p></e>
+<e><p><l>du<s n="vblex"/></l><r>build<s n="vblex"/></r></p></e>
 
 
 </section>
