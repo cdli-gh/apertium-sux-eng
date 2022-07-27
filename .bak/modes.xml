@@ -25,9 +25,17 @@
         <file name="sux-eng.autolex.bin"/>
       </program>
 
-
-      <program name="rtx-proc">
-        <file name="sux-eng.rtx.bin"/>
+      <program name="apertium-transfer -b">
+        <file name="apertium-sux-eng.sux-eng.t1x"/>
+        <file name="sux-eng.t1x.bin"/>
+      </program>
+      <program name="apertium-interchunk">
+        <file name="apertium-sux-eng.sux-eng.t2x"/>
+        <file name="sux-eng.t2x.bin"/>
+      </program>
+      <program name="apertium-postchunk">
+        <file name="apertium-sux-eng.sux-eng.t3x"/>
+        <file name="sux-eng.t3x.bin"/>
       </program>
 
       <program name="lt-proc $1">
@@ -64,9 +72,17 @@
         <file name="eng-sux.autolex.bin"/>
       </program>
 
-
-      <program name="rtx-proc">
-        <file name="eng-sux.rtx.bin"/>
+      <program name="apertium-transfer -b">
+        <file name="apertium-sux-eng.eng-sux.t1x"/>
+        <file name="eng-sux.t1x.bin"/>
+      </program>
+      <program name="apertium-interchunk">
+        <file name="apertium-sux-eng.eng-sux.t2x"/>
+        <file name="eng-sux.t2x.bin"/>
+      </program>
+      <program name="apertium-postchunk">
+        <file name="apertium-sux-eng.eng-sux.t3x"/>
+        <file name="eng-sux.t3x.bin"/>
       </program>
 
       <program name="lt-proc $1">
