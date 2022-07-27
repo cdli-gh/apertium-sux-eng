@@ -630,12 +630,12 @@ AP_SUBDIRS
 AP_LIB1
 AP_SRC1
 ZCAT
+APERTIUM_RECURSIVE_LIBS
+APERTIUM_RECURSIVE_CFLAGS
 APERTIUM_LEX_TOOLS_LIBS
 APERTIUM_LEX_TOOLS_CFLAGS
 CG3_LIBS
 CG3_CFLAGS
-HFST_LIBS
-HFST_CFLAGS
 LTTOOLBOX_LIBS
 LTTOOLBOX_CFLAGS
 APERTIUM_LIBS
@@ -730,12 +730,12 @@ APERTIUM_CFLAGS
 APERTIUM_LIBS
 LTTOOLBOX_CFLAGS
 LTTOOLBOX_LIBS
-HFST_CFLAGS
-HFST_LIBS
 CG3_CFLAGS
 CG3_LIBS
 APERTIUM_LEX_TOOLS_CFLAGS
 APERTIUM_LEX_TOOLS_LIBS
+APERTIUM_RECURSIVE_CFLAGS
+APERTIUM_RECURSIVE_LIBS
 AP_SRC1
 AP_LIB1
 AP_SUBDIRS
@@ -1400,14 +1400,16 @@ Some influential environment variables:
               C compiler flags for LTTOOLBOX, overriding pkg-config
   LTTOOLBOX_LIBS 
               linker flags for LTTOOLBOX, overriding pkg-config
-  HFST_CFLAGS C compiler flags for HFST, overriding pkg-config
-  HFST_LIBS   linker flags for HFST, overriding pkg-config
   CG3_CFLAGS  C compiler flags for CG3, overriding pkg-config
   CG3_LIBS    linker flags for CG3, overriding pkg-config
   APERTIUM_LEX_TOOLS_CFLAGS 
               C compiler flags for APERTIUM_LEX_TOOLS, overriding pkg-config
   APERTIUM_LEX_TOOLS_LIBS 
               linker flags for APERTIUM_LEX_TOOLS, overriding pkg-config
+  APERTIUM_RECURSIVE_CFLAGS 
+              C compiler flags for APERTIUM_RECURSIVE, overriding pkg-config
+  APERTIUM_RECURSIVE_LIBS 
+              linker flags for APERTIUM_RECURSIVE, overriding pkg-config
   AP_SRC1     Path to apertium-sux sources, same as AP_LIB1 if --with-lang1
               set
   AP_LIB1     Path to apertium-sux binaries, same as AP_SRC1 if --with-lang1
@@ -2954,97 +2956,6 @@ fi
 
 
 
-pkg_failed=no
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for hfst >= 3.16.0" >&5
-printf %s "checking for hfst >= 3.16.0... " >&6; }
-
-if test -n "$HFST_CFLAGS"; then
-    pkg_cv_HFST_CFLAGS="$HFST_CFLAGS"
- elif test -n "$PKG_CONFIG"; then
-    if test -n "$PKG_CONFIG" && \
-    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"hfst >= 3.16.0\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "hfst >= 3.16.0") 2>&5
-  ac_status=$?
-  printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-  test $ac_status = 0; }; then
-  pkg_cv_HFST_CFLAGS=`$PKG_CONFIG --cflags "hfst >= 3.16.0" 2>/dev/null`
-		      test "x$?" != "x0" && pkg_failed=yes 
-else
-  pkg_failed=yes
-fi
- else
-    pkg_failed=untried
-fi
-if test -n "$HFST_LIBS"; then
-    pkg_cv_HFST_LIBS="$HFST_LIBS"
- elif test -n "$PKG_CONFIG"; then
-    if test -n "$PKG_CONFIG" && \
-    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"hfst >= 3.16.0\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "hfst >= 3.16.0") 2>&5
-  ac_status=$?
-  printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-  test $ac_status = 0; }; then
-  pkg_cv_HFST_LIBS=`$PKG_CONFIG --libs "hfst >= 3.16.0" 2>/dev/null`
-		      test "x$?" != "x0" && pkg_failed=yes 
-else
-  pkg_failed=yes
-fi
- else
-    pkg_failed=untried
-fi
-
-
-
-if test $pkg_failed = yes; then
-        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
-printf "%s\n" "no" >&6; }
-        
-if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
-        _pkg_short_errors_supported=yes
-else
-        _pkg_short_errors_supported=no
-fi
-        if test $_pkg_short_errors_supported = yes; then
-	        HFST_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "hfst >= 3.16.0" 2>&1`
-        else
-	        HFST_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "hfst >= 3.16.0" 2>&1`
-        fi
-	# Put the nasty error message in config.log where it belongs
-	echo "$HFST_PKG_ERRORS" >&5
-
-	as_fn_error $? "Package requirements (hfst >= 3.16.0) were not met:
-
-$HFST_PKG_ERRORS
-
-Consider adjusting the PKG_CONFIG_PATH environment variable if you
-installed software in a non-standard prefix.
-
-Alternatively, you may set the environment variables HFST_CFLAGS
-and HFST_LIBS to avoid the need to call pkg-config.
-See the pkg-config man page for more details." "$LINENO" 5        
-elif test $pkg_failed = untried; then
-        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
-printf "%s\n" "no" >&6; }
-	{ { printf "%s\n" "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
-printf "%s\n" "$as_me: error: in \`$ac_pwd':" >&2;}
-as_fn_error $? "The pkg-config script could not be found or is too old.  Make sure it
-is in your PATH or set the PKG_CONFIG environment variable to the full
-path to pkg-config.
-
-Alternatively, you may set the environment variables HFST_CFLAGS
-and HFST_LIBS to avoid the need to call pkg-config.
-See the pkg-config man page for more details.
-
-To get pkg-config, see <http://pkg-config.freedesktop.org/>.
-See \`config.log' for more details" "$LINENO" 5; }        
-else
-	HFST_CFLAGS=$pkg_cv_HFST_CFLAGS
-	HFST_LIBS=$pkg_cv_HFST_LIBS
-        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
-printf "%s\n" "yes" >&6; }
-	
-fi
-
 
 pkg_failed=no
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for cg3 >= 1.3.6" >&5
@@ -3230,6 +3141,97 @@ fi
 
 
 
+
+pkg_failed=no
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for apertium-recursive >= 1.1.0" >&5
+printf %s "checking for apertium-recursive >= 1.1.0... " >&6; }
+
+if test -n "$APERTIUM_RECURSIVE_CFLAGS"; then
+    pkg_cv_APERTIUM_RECURSIVE_CFLAGS="$APERTIUM_RECURSIVE_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"apertium-recursive >= 1.1.0\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "apertium-recursive >= 1.1.0") 2>&5
+  ac_status=$?
+  printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_APERTIUM_RECURSIVE_CFLAGS=`$PKG_CONFIG --cflags "apertium-recursive >= 1.1.0" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$APERTIUM_RECURSIVE_LIBS"; then
+    pkg_cv_APERTIUM_RECURSIVE_LIBS="$APERTIUM_RECURSIVE_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"apertium-recursive >= 1.1.0\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "apertium-recursive >= 1.1.0") 2>&5
+  ac_status=$?
+  printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_APERTIUM_RECURSIVE_LIBS=`$PKG_CONFIG --libs "apertium-recursive >= 1.1.0" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+        
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        APERTIUM_RECURSIVE_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "apertium-recursive >= 1.1.0" 2>&1`
+        else
+	        APERTIUM_RECURSIVE_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "apertium-recursive >= 1.1.0" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$APERTIUM_RECURSIVE_PKG_ERRORS" >&5
+
+	as_fn_error $? "Package requirements (apertium-recursive >= 1.1.0) were not met:
+
+$APERTIUM_RECURSIVE_PKG_ERRORS
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively, you may set the environment variables APERTIUM_RECURSIVE_CFLAGS
+and APERTIUM_RECURSIVE_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details." "$LINENO" 5        
+elif test $pkg_failed = untried; then
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+	{ { printf "%s\n" "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+printf "%s\n" "$as_me: error: in \`$ac_pwd':" >&2;}
+as_fn_error $? "The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively, you may set the environment variables APERTIUM_RECURSIVE_CFLAGS
+and APERTIUM_RECURSIVE_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+
+To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+See \`config.log' for more details" "$LINENO" 5; }        
+else
+	APERTIUM_RECURSIVE_CFLAGS=$pkg_cv_APERTIUM_RECURSIVE_CFLAGS
+	APERTIUM_RECURSIVE_LIBS=$pkg_cv_APERTIUM_RECURSIVE_LIBS
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+printf "%s\n" "yes" >&6; }
+	
+fi
 
 for ac_prog in gzcat zcat
 do

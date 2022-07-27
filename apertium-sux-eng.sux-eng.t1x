@@ -63,6 +63,12 @@
       <attr-item tags="mf"/>
     </def-attr>
 
+    <def-attr n="Noun_Case">
+      <attr-item tags="gen"/>
+      <attr-item tags="pr"/>
+    </def-attr>
+
+
   </section-def-attrs>
 
   <!-- <section-def-vars>
@@ -126,7 +132,7 @@
       </action>
     </rule>
 
-    <rule comment = "for verbs, pronoun, person, tense etc">
+    <rule comment = "verb mattching rule">
       <pattern>
         <pattern-item n="Verbs"/>
       </pattern>
@@ -134,7 +140,7 @@
         <out> 
             <lu>
                 <lit v="prpers"/>
-                <clip pos="1" side="tl" part="P"/>
+                <clip pos="1" side="sl" part="prn"/>
                 <clip pos="1" side="sl" part="sub_obj"/>
                 <clip pos="1" side="sl" part="person"/>
                 <clip pos="1" side="sl" part="m_f"/>

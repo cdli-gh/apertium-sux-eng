@@ -113,6 +113,7 @@ AM_V_at = $(am__v_at_@AM_V@)
 am__v_at_ = $(am__v_at_@AM_DEFAULT_V@)
 am__v_at_0 = @
 am__v_at_1 = 
+SOURCES =
 DIST_SOURCES =
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
@@ -149,25 +150,8 @@ am__uninstall_files_from_dir = { \
 am__installdirs = "$(DESTDIR)$(apertium_sux_engdir)"
 DATA = $(apertium_sux_eng_DATA) $(noinst_DATA)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
-# Read a list of newline-separated strings from the standard input,
-# and print each of them once, without duplicates.  Input order is
-# *not* preserved.
-am__uniquify_input = $(AWK) '\
-  BEGIN { nonempty = 0; } \
-  { items[$$0] = 1; nonempty = 1; } \
-  END { if (nonempty) { for (i in items) print i; }; } \
-'
-# Make sure the list of sources is unique.  This is necessary because,
-# e.g., the same source file might be shared among _SOURCES variables
-# for different programs/libraries.
-am__define_uniq_tagged_files = \
-  list='$(am__tagged_files)'; \
-  unique=`for i in $$list; do \
-    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
-  done | $(am__uniquify_input)`
-AM_RECURSIVE_TARGETS = cscope
 am__DIST_COMMON = $(srcdir)/Makefile.in AUTHORS COPYING ChangeLog \
-	INSTALL NEWS README.md install-sh missing
+	INSTALL NEWS README install-sh missing
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
 top_distdir = $(distdir)
@@ -196,6 +180,8 @@ APERTIUM_ENG_LIBS = @APERTIUM_ENG_LIBS@
 APERTIUM_LEX_TOOLS_CFLAGS = @APERTIUM_LEX_TOOLS_CFLAGS@
 APERTIUM_LEX_TOOLS_LIBS = @APERTIUM_LEX_TOOLS_LIBS@
 APERTIUM_LIBS = @APERTIUM_LIBS@
+APERTIUM_RECURSIVE_CFLAGS = @APERTIUM_RECURSIVE_CFLAGS@
+APERTIUM_RECURSIVE_LIBS = @APERTIUM_RECURSIVE_LIBS@
 APERTIUM_SUX_CFLAGS = @APERTIUM_SUX_CFLAGS@
 APERTIUM_SUX_LIBS = @APERTIUM_SUX_LIBS@
 AP_LIB1 = @AP_LIB1@
@@ -217,8 +203,6 @@ ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 ETAGS = @ETAGS@
-HFST_CFLAGS = @HFST_CFLAGS@
-HFST_LIBS = @HFST_LIBS@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -294,72 +278,54 @@ LANG2 = eng
 PREFIX1 = $(LANG1)-$(LANG2)
 PREFIX2 = $(LANG2)-$(LANG1)
 BASENAME = apertium-$(PREFIX1)
-TARGETS_DIR1 = \
+TARGETS_COMMON = \
+	$(PREFIX1).automorf.bin	\
 	$(PREFIX1).prob		\
 	$(PREFIX1).rlx.bin	\
 	$(PREFIX1).autobil.bin	\
 	$(PREFIX1).autolex.bin	\
 	$(PREFIX1).autogen.bin	\
 	$(PREFIX1).autopgen.bin	\
-	$(PREFIX1).t1x.bin	\
-	$(PREFIX1).t2x.bin	\
-	$(PREFIX1).t3x.bin
-
-TRIMMED_TARGETS_DIR1 = \
-	$(PREFIX1).automorf.bin
-
-UNTRIMMED_TARGETS_DIR1 = \
-	$(PREFIX1).automorf-untrimmed.bin
-
-TARGETS_DIR2 = \
+	$(PREFIX1).rtx.bin	\
+	$(PREFIX2).automorf.bin	\
 	$(PREFIX2).prob		\
 	$(PREFIX2).rlx.bin	\
 	$(PREFIX2).autobil.bin	\
 	$(PREFIX2).autolex.bin	\
 	$(PREFIX2).autogen.bin	\
 	$(PREFIX2).autopgen.bin	\
-	$(PREFIX2).t1x.bin	\
-	$(PREFIX2).t2x.bin	\
-	$(PREFIX2).t3x.bin
-
-TRIMMED_TARGETS_DIR2 = \
-	$(PREFIX2).automorf.bin
-
-UNTRIMMED_TARGETS_DIR2 = \
-	$(PREFIX2).automorf-untrimmed.bin
-
-TARGETS_COMMON = $(TARGETS_DIR1) $(TRIMMED_TARGETS_DIR1) \
-				 $(TARGETS_DIR2) $(TRIMMED_TARGETS_DIR2)
-
-SOURCES = \
-	$(BASENAME).$(PREFIX1).t1x			\
-	$(BASENAME).$(PREFIX1).t2x			\
-	$(BASENAME).$(PREFIX1).t3x			\
-	$(BASENAME).$(PREFIX2).t1x			\
-	$(BASENAME).$(PREFIX2).t2x			\
-	$(BASENAME).$(PREFIX2).t3x			\
-	$(BASENAME).$(PREFIX1).dix			\
-	$(BASENAME).$(PREFIX1).lrx			\
-	$(BASENAME).$(PREFIX2).lrx
+	$(PREFIX2).rtx.bin
 
 
 ###############################################################################
 ###############################################################################
-EXTRA_DIST = $(SOURCES) modes.xml
+EXTRA_DIST = \
+		$(BASENAME).$(PREFIX1).lrx	\
+		$(BASENAME).$(PREFIX1).dix	\
+		$(BASENAME).$(PREFIX2).lrx	\
+		$(BASENAME).$(PREFIX1).rtx	\
+		$(BASENAME).$(PREFIX2).rtx	\
+		modes.xml
+
 
 ###############################################################################
 ###############################################################################
 apertium_sux_engdir = $(prefix)/share/apertium/$(BASENAME)/
 
 # Files which should be installed to $(prefix)/share/apertium/$(BASENAME)/:
-apertium_sux_eng_DATA = $(TARGETS_COMMON) $(SOURCES)
+apertium_sux_eng_DATA = \
+	$(TARGETS_COMMON)
+
 
 # All modes are created by the same goal, listing several will just give problems with make -j2
-noinst_DATA = modes/$(PREFIX1).mode
+noinst_DATA = modes/$(PREFIX1).mode \
+	.deps/$(LANG1).automorf.bin \
+	.deps/$(LANG2).automorf.bin
+
 
 ###############################################################################
 ###############################################################################
-CLEANFILES = $(TARGETS_COMMON) $(UNTRIMMED_TARGETS_DIR1) $(UNTRIMMED_TARGETS_DIR2)
+CLEANFILES = $(TARGETS_COMMON)
 all: all-am
 
 .SUFFIXES:
@@ -417,65 +383,12 @@ uninstall-apertium_sux_engDATA:
 	@list='$(apertium_sux_eng_DATA)'; test -n "$(apertium_sux_engdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(apertium_sux_engdir)'; $(am__uninstall_files_from_dir)
+tags TAGS:
 
-ID: $(am__tagged_files)
-	$(am__define_uniq_tagged_files); mkid -fID $$unique
-tags: tags-am
-TAGS: tags
+ctags CTAGS:
 
-tags-am: $(TAGS_DEPENDENCIES) $(am__tagged_files)
-	set x; \
-	here=`pwd`; \
-	$(am__define_uniq_tagged_files); \
-	shift; \
-	if test -z "$(ETAGS_ARGS)$$*$$unique"; then :; else \
-	  test -n "$$unique" || unique=$$empty_fix; \
-	  if test $$# -gt 0; then \
-	    $(ETAGS) $(ETAGSFLAGS) $(AM_ETAGSFLAGS) $(ETAGS_ARGS) \
-	      "$$@" $$unique; \
-	  else \
-	    $(ETAGS) $(ETAGSFLAGS) $(AM_ETAGSFLAGS) $(ETAGS_ARGS) \
-	      $$unique; \
-	  fi; \
-	fi
-ctags: ctags-am
+cscope cscopelist:
 
-CTAGS: ctags
-ctags-am: $(TAGS_DEPENDENCIES) $(am__tagged_files)
-	$(am__define_uniq_tagged_files); \
-	test -z "$(CTAGS_ARGS)$$unique" \
-	  || $(CTAGS) $(CTAGSFLAGS) $(AM_CTAGSFLAGS) $(CTAGS_ARGS) \
-	     $$unique
-
-GTAGS:
-	here=`$(am__cd) $(top_builddir) && pwd` \
-	  && $(am__cd) $(top_srcdir) \
-	  && gtags -i $(GTAGS_ARGS) "$$here"
-cscope: cscope.files
-	test ! -s cscope.files \
-	  || $(CSCOPE) -b -q $(AM_CSCOPEFLAGS) $(CSCOPEFLAGS) -i cscope.files $(CSCOPE_ARGS)
-clean-cscope:
-	-rm -f cscope.files
-cscope.files: clean-cscope cscopelist
-cscopelist: cscopelist-am
-
-cscopelist-am: $(am__tagged_files)
-	list='$(am__tagged_files)'; \
-	case "$(srcdir)" in \
-	  [\\/]* | ?:[\\/]*) sdir="$(srcdir)" ;; \
-	  *) sdir=$(subdir)/$(srcdir) ;; \
-	esac; \
-	for i in $$list; do \
-	  if test -f "$$i"; then \
-	    echo "$(subdir)/$$i"; \
-	  else \
-	    echo "$$sdir/$$i"; \
-	  fi; \
-	done >> $(top_builddir)/cscope.files
-
-distclean-tags:
-	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH tags
-	-rm -f cscope.out cscope.in.out cscope.po.out cscope.files
 distdir: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) distdir-am
 
@@ -693,7 +606,7 @@ clean-am: clean-generic clean-local mostlyclean-am
 distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -f Makefile
-distclean-am: clean-am distclean-generic distclean-tags
+distclean-am: clean-am distclean-generic
 
 dvi: dvi-am
 
@@ -757,11 +670,10 @@ uninstall-am: uninstall-apertium_sux_engDATA uninstall-local
 
 .MAKE: install-am install-strip
 
-.PHONY: CTAGS GTAGS TAGS all all-am am--refresh check check-am clean \
-	clean-cscope clean-generic clean-local cscope cscopelist-am \
-	ctags ctags-am dist dist-all dist-bzip2 dist-gzip dist-lzip \
-	dist-shar dist-tarZ dist-xz dist-zip dist-zstd distcheck \
-	distclean distclean-generic distclean-tags distcleancheck \
+.PHONY: all all-am am--refresh check check-am clean clean-generic \
+	clean-local cscopelist-am ctags-am dist dist-all dist-bzip2 \
+	dist-gzip dist-lzip dist-shar dist-tarZ dist-xz dist-zip \
+	dist-zstd distcheck distclean distclean-generic distcleancheck \
 	distdir distuninstallcheck dvi dvi-am html html-am info \
 	info-am install install-am install-apertium_sux_engDATA \
 	install-data install-data-am install-data-local install-dvi \
@@ -770,15 +682,11 @@ uninstall-am: uninstall-apertium_sux_engDATA uninstall-local
 	install-pdf install-pdf-am install-ps install-ps-am \
 	install-strip installcheck installcheck-am installdirs \
 	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-generic pdf pdf-am ps ps-am tags tags-am uninstall \
+	mostlyclean-generic pdf pdf-am ps ps-am tags-am uninstall \
 	uninstall-am uninstall-apertium_sux_engDATA uninstall-local
 
 .PRECIOUS: Makefile
 
-
-sux-eng: $(TARGETS_DIR1) $(TRIMMED_TARGETS_DIR1)
-eng-sux: $(TARGETS_DIR2) $(TRIMMED_TARGETS_DIR2)
-untrimmed: $(TARGETS_DIR1) $(UNTRIMMED_TARGETS_DIR2) $(TARGETS_DIR2) $(UNTRIMMED_TARGETS_DIR2)
 
 # This include defines goals for install-modes, .deps/.d, autobil.prefixes and .mode files:
 @ap_include@
@@ -790,25 +698,15 @@ untrimmed: $(TARGETS_DIR1) $(UNTRIMMED_TARGETS_DIR2) $(TARGETS_DIR2) $(UNTRIMMED
 # Sumerian analysis:
 # -------------------
 
-.deps/$(LANG1).automorf.hfst: $(AP_SRC1)/$(LANG1).automorf.att.gz .deps/.d
-	$(ZCAT) $< | hfst-txt2fst > $@
+.deps/$(LANG1).automorf.bin: $(AP_SRC1)/$(LANG1).automorf.bin .deps/.d
+	cp $< $@
 
-$(PREFIX1).automorf-untrimmed.bin: $(AP_SRC1)/$(LANG1).automorf.att.gz
-	@$(ZCAT) $< > $@.att
-	lt-comp lr $@.att $@
-	@rm $@.att
-
-$(PREFIX1).automorf.bin: .deps/$(LANG1).automorf.hfst .deps/$(PREFIX1).autobil.prefixes
-	hfst-compose-intersect -1 .deps/$(LANG1).automorf.hfst -2 .deps/$(PREFIX1).autobil.prefixes -o .deps/$(PREFIX1).automorf.trimmed
-	hfst-fst2txt -i .deps/$(PREFIX1).automorf.trimmed -o .deps/$(PREFIX1).automorf.trimmed.att
-	lt-comp lr .deps/$(PREFIX1).automorf.trimmed.att $@
+$(PREFIX1).automorf.bin: .deps/$(LANG1).automorf.bin $(PREFIX1).autobil.bin
+	lt-trim $^ $@
 
 # -------------------
 # Sumerian generation:
 # ---------------------
-
-$(PREFIX2).autogen.hfst: $(AP_SRC1)/$(LANG1).autogen.hfst
-	cp $< $@
 
 $(PREFIX2).autogen.bin: $(AP_SRC1)/$(LANG1).autogen.bin
 	cp $< $@
@@ -817,10 +715,10 @@ $(PREFIX2).autogen.bin: $(AP_SRC1)/$(LANG1).autogen.bin
 # English analysis:
 # -------------------
 
-$(PREFIX2).automorf-untrimmed.bin: $(AP_SRC2)/$(LANG2).automorf.bin
+.deps/$(LANG2).automorf.bin: $(AP_SRC2)/$(LANG2).automorf.bin .deps/.d
 	cp $< $@
 
-$(PREFIX2).automorf.bin: $(PREFIX2).automorf-untrimmed.bin $(PREFIX2).autobil.bin
+$(PREFIX2).automorf.bin: .deps/$(LANG2).automorf.bin $(PREFIX2).autobil.bin
 	lt-trim $^ $@
 
 # -------------------
@@ -842,11 +740,11 @@ $(PREFIX2).prob: $(AP_SRC2)/$(LANG2).prob
 ###############################################################################
 ###############################################################################
 
-$(PREFIX1).rlx.bin: $(AP_SRC1)/$(LANG1).rlx.bin
-	cp $< $@
+$(PREFIX1).rlx.bin: $(AP_SRC1)/apertium-$(LANG1).$(LANG1).rlx
+	cg-comp $< $@
 
-$(PREFIX2).rlx.bin: $(AP_SRC2)/$(LANG2).rlx.bin
-	cp $< $@
+$(PREFIX2).rlx.bin: $(AP_SRC2)/apertium-$(LANG2).$(LANG2).rlx
+	cg-comp $< $@
 
 ###############################################################################
 ###############################################################################
@@ -873,29 +771,11 @@ $(PREFIX2).autolex.bin: $(BASENAME).$(PREFIX2).lrx
 ###############################################################################
 ###############################################################################
 
-$(PREFIX1).t1x.bin: $(BASENAME).$(PREFIX1).t1x
-	apertium-validate-transfer $<
-	apertium-preprocess-transfer $< $@
+$(PREFIX1).rtx.bin: $(BASENAME).$(PREFIX1).rtx
+	rtx-comp $< $@
 
-$(PREFIX1).t2x.bin: $(BASENAME).$(PREFIX1).t2x
-	apertium-validate-interchunk $<
-	apertium-preprocess-transfer $< $@
-
-$(PREFIX1).t3x.bin: $(BASENAME).$(PREFIX1).t3x
-	apertium-validate-postchunk $<
-	apertium-preprocess-transfer $< $@
-
-$(PREFIX2).t1x.bin: $(BASENAME).$(PREFIX2).t1x
-	apertium-validate-transfer $<
-	apertium-preprocess-transfer $< $@
-
-$(PREFIX2).t2x.bin: $(BASENAME).$(PREFIX2).t2x
-	apertium-validate-interchunk $<
-	apertium-preprocess-transfer $< $@
-
-$(PREFIX2).t3x.bin: $(BASENAME).$(PREFIX2).t3x
-	apertium-validate-postchunk $<
-	apertium-preprocess-transfer $< $@
+$(PREFIX2).rtx.bin: $(BASENAME).$(PREFIX2).rtx
+	rtx-comp $< $@
 
 ###############################################################################
 ###############################################################################

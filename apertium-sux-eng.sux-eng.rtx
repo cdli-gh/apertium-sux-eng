@@ -1,0 +1,113 @@
+!!!!!!!!!!!!!!!
+!! ATTRIBUTE CATEGORIES
+!!!!!!!!!!!!!!!
+
+Number = sg pl;
+Gender = m f mf;
+Tense = pres past;
+SubObj = subj obj;
+Person = p1 p2 p3;
+NounCase = gen case_into case_from case_with case_toward case_like_as  case_for;
+
+
+!!!!!!!!!!!!!!!
+!! ATTRIBUTE CATEGORIES
+!!!!!!!!!!!!!!!
+
+!! ===== Patterns =============
+!! this is an output pattern, _ denotes the tag iteself like (prn) here,and then the other tags we need
+!! the subtags may or may not be present, so there can be empty at the place of Person,Gender etc.
+!! Here VP, NP etc are tags to the chunks in reduction rules, 
+
+
+prn: _.SubObj.Person.Gender.Number;
+vblex: _.Tense;
+det:_;
+VP: _;
+NP: _;
+SEN:_;
+n: _.Number;
+
+
+
+!! ===== Personal Noun (Names etc) =============
+np: %;
+
+
+!!!!!!!!!!!!!!!
+!! REDUCTION RULES
+!!!!!!!!!!!!!!!
+
+
+!! a.] Verb Output
+
+VP -> vblex { prpers@prn.[1.SubObj].[1.Person].[1.Gender].[1.Number] _ 1 } ;
+
+
+!! b.] Noun Output
+
+NP -> n { (if (1.NounCase = gen)
+               [of@pr]
+            else
+               [] ) 
+          _ 1 };
+
+
+!! c.] The final order we need
+
+
+SEN -> NP NP VP { 3 _ 1 _ 2 } | 
+      NP VP { 2 _ 1 };
+
+!! b.] Personal Name
+PR_NM:_;
+PR_NM -> np {1};
+
+
+
+
+
+
+!! =============================================================================
+!! Default Examples and patterns
+
+!!!!!!!!!!!!!!!
+!! OUTPUT PATTERNS
+!!!!!!!!!!!!!!!
+
+!n: _.gender.number;
+!adj: _.gender.number;
+!det_default: _.det_type;
+!det_def: _.det_type.number;
+!NP: _.number;
+
+!!!!!!!!!!!!!!!
+!! TAG-REWRITE RULES
+!!!!!!!!!!!!!!!
+
+!tense > tense : ifi past, pri pres, fti fut;
+
+!!!!!!!!!!!!!!!
+!! MACROS
+!!!!!!!!!!!!!!!
+
+!det: (if (1.det_type = def or 1.det_type = ind)
+!         1(det_def)
+!      else
+!         1(det_default));
+
+!!!!!!!!!!!!!!!
+!! REDUCTION RULES
+!!!!!!!!!!!!!!!
+
+! Example rule:
+! Input:  ^ראש<n><m><sg>/hovud<n><nt><sg>$ ^גדול<adj><m><sg>/stor<adj><m><sg>$
+! Output: ^stor<adj><nt><sg>$ ^hovud<n><nt><sg>$
+! NP -> n.$number adj { 2[gender=1.gender, number=1.number] _ 1 } ;
+
+
+
+! Resources:
+! https://wiki.apertium.org/wiki/Apertium-recursive
+! https://wiki.apertium.org/wiki/Apertium-recursive/Formalism
+! https://wiki.apertium.org/wiki/Apertium-recursive/Cookbook
