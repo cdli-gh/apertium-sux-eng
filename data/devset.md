@@ -64,7 +64,7 @@
 
 	> note: if a clause contains an argument with the same case, then these should not be generated from the verb)
 
-	> note: the first dimensional prefix will take the IPP pronoun, if there are multiple IPP pronouns, we do not know which pronominal form they take, it's probably best to translate the first dimensional prefix only and to ignore the others
+	> note: the first dimensional prefix will take the IPP pronoun, if there are multiple IPP pronouns, we do not know which pronominal form they take, it's probably best to translate the first dimensional prefix only and to ignore the others.
 
 	- `DAT` "for [+ IPP pron]", e.g., `<3-PL><DAT>` "for them"
 
