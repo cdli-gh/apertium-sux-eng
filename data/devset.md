@@ -22,15 +22,6 @@
 
 ## verb (V)
 
-- `NEG` "not"
-
-		nu-du3-am	<NEG><V><3-SG-S><SUB><COP-3-SG>
-		"it is not built (=du3)" (P432264)
-
-	analoguously (no examples found):
-	- `MOD3` "do not" or "may he not"
-	- `MOD5` "not"
-
 - `MOD4` "certainly"
 
 		ba-ra-ba-ta-e3	<MOD4><MID><ABL><V><3-SG-S>
@@ -157,7 +148,7 @@
 		ba-hul-a	<MID><V><3-SG-S><SUB>
 		"year that Urbilum and Kimash was destroyed" (P212356)
 
-	(two places are named but annotation says singular, so "was")
+	(two places are named but annotation says singular, so "was"; example also shows that you should generate pronouns from dimensional prefixes only if the corresponding case is not expressed in a full phrase)
 
 	> Note if `SUB` occurs with an *English* adjective, ignore it, for a verb meaning "(being) blue", the literal translation would be "that what is blue", but we just keep "blue"
 
@@ -166,6 +157,19 @@
 
 		"strong (=kalag) king(=lugal)" (P430412)
 		NOT "king who is strong"
+
+- `NEG` "not" (hard, hence last)
+
+		nu-du3-am	<NEG><V><3-SG-S><SUB><COP-3-SG>
+		"it is that that wasn't built (=du3)" (P432264)
+
+	> Note: `<COP-3-SG>` comes from nominal annotation, as `SUB` turns a morphological verb (= a syntactic clause) into a morphological noun (= syntactic relative clause), translated as "it is (that)". The passive is because there is no intransitive "build" in English
+
+	analoguously (no examples found):
+	- `MOD3` "do not" or "may he not"
+	- `MOD5` "not"
+
+
 
 
 do not translate (no CDLI examples with translation found)
