@@ -27,6 +27,10 @@
 		nu-du3-am	<NEG><V><3-SG-S><SUB><COP-3-SG>
 		"it is not built (=du3)" (P432264)
 
+	analoguously (no examples found):
+	- `MOD3` "do not" or "may he not"
+	- `MOD5` "not"
+
 - `MOD4` "certainly"
 
 		ba-ra-ba-ta-e3	<MOD4><MID><ABL><V><3-SG-S>
@@ -169,8 +173,6 @@ do not translate (no CDLI examples with translation found)
 - `ANT` "after"
 - `RDP` (reduplication, could mean "much" or "many" or "all")
 - `MOD2` "it is my (our) intention to ..."
-- `MOD3` "do not" or "may he not"
-- `MOD5` "not"
 - `MOD6` "?"
 - `MOD7` "certainly"
 - `FIN-LI` (`FIN-L1`)
