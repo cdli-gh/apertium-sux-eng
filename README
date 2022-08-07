@@ -27,6 +27,13 @@ You will need the following software installed:
 
 If this does not make any sense, we recommend you look at: apertium.org.
 
+
+**Other dependencies to evaluate the translatoion sentences**
+
+* evaluate (check [huggingface](https://github.com/huggingface/evaluate)  for more information)
+* sacrebleu
+
+
 Compiling
 -------------------------------------------------------------------------------
 
