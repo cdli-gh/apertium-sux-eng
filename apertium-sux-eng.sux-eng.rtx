@@ -17,14 +17,7 @@
 !! ATTRIBUTE CATEGORIES
 !!!!!!!!!!!!!!!
 
-Demonstrative = dem dem2 dem3;
-Person = p1 p2 p3;
-Number = (Nm sg) sg pl ord RDP;
-prn_type = subj obj poss;
-Gender = (GD m) m f mf;
-Human_NonHuman = h nh;
-noun_case_marker = (case_m abs) abs erg dat com abl term l1 l2 l3 l4 gen equ adv;
-Copula = cop except;
+
 
 
 
@@ -37,10 +30,17 @@ Copula = cop except;
 ! ini_pron_pref is similar to to take out the person we are talking about
 
 
-verb_case_marker = l1 l2 l3;
-dim_4_marker = ob syn;
-
-mod_pref = neg ant stem mod1 mod2 mod3 mod4 mod5 mod6 mod7;
+!verb_case_marker = l1 l2 l3;
+!dim_4_marker = ob syn;
+!mod_pref = neg ant stem mod1 mod2 mod3 mod4 mod5 mod6 mod7;
+!dim3_pref = abl term;
+!dim4_pref = [verb_case_marker] loc;
+!fin_pron_pref_a_p = a p ob l3;
+!v_stem = stem cop;
+!pf_marker = pf plen;
+!pron_suf = a subj p; 
+!sub_pref = sub; 
+!Tense = (TS past) pres past pf;
 !fin_marker = fin;
 !coor_pref = coor;
 !vent_pref = ven;
@@ -48,14 +48,46 @@ mod_pref = neg ant stem mod1 mod2 mod3 mod4 mod5 mod6 mod7;
 !persons = p1 p2 p3; 
 !dim1 = dat;
 !dim2 = com;
-dim3_pref = abl term;
-dim4_pref = [verb_case_marker] loc;
-fin_pron_pref_a_p = a p ob l3;
-v_stem = stem cop;
-pf_marker = pf plen;
-pron_suf = a subj p; 
-sub_pref = sub; 
-Tense = pres past pf;
+
+
+
+Tense = (TN past) past pres;
+
+
+v1 = neg mod1 ant v-pl v-rdp;
+v2 = mod2 mod3 mod4 mod5 mod6 mod7 fin fin-l1 fin-l2;
+v3 = coor;
+v4 = ven;
+v5 = mid 3-nh;
+v6 = 1-sg 2-sg 3-sg-h 1-pl 3-pl;
+v7 = dat;
+v8 = com;
+v9 = abl term;
+v10 = l1 loc-ob l1-syn l2 l2-syn l3;
+v11 =  1-sg-a 2-sg-a 3-sg-h-a 3-sg-h-p 3-sg-h-l3 1-sg-a-ob 3-sg-nh-a 3-sg-nh-p 3-sg-nh-l3 3-pl-h-p;  
+v12 = cop;
+v13 = (past past) pf plen past pres;
+v14 = (3-sg-s 3-sg-s) 1-sg-a 1-sg-s 1-sg-p 2-sg-a 2-sg-s 2-sg-p 3-sg-s 3-sg-p 3-sg-a 3-sg-s-ob 1-pl-a 1-pl-s 1-pl 2-pl-a 2-pl-s 2-pl 3-pl-a 3-pl-s 3-pl-p 3-pl; 
+v15 = sub;
+
+
+
+
+Demonstrative = dem dem2 dem3;
+Person = p1 p2 p3;
+Number = (Nm sg) sg pl ord RDP;
+prn_type = (PRN subj) subj obj poss;
+Gender = (GD m) m f mf;
+Human_NonHuman = h nh;
+noun_case_marker = (case_m abs) abs erg dat com abl term l1 l2 l3 l4 gen equ adv;
+Copula = cop except;
+
+
+n2 = dem dem3;
+n3 = 1-sg-poss 2-sg-poss 3-sg-h-poss 3-sg-nh-poss dem2 1-pl-poss 2-pl-poss 3-pl-poss;
+n4 = (Nm sg) sg pl ord;
+n5 = abs erg dat-h dat-nh com abl term l1 l2-h l2-nh l3-h l3-nh gen equ l4 adv;
+n6 = cop-1-sg cop-2-sg cop-3-sg cop-1-pl cop-2-pl cop-3-pl except;
 
 
 !!!!!!!!!!!!!!!
@@ -68,12 +100,14 @@ Tense = pres past pf;
 
 
 prn: _.prn_type.Person.Gender.Number;
-vblex: _.Tense;
+vP2: _;
+vP14: _.v13.Number;
+vblex: _.v13.Number;
 det: _;
-VP: _;
-NP: _;
+VP: _.v13.Number;
+NP: _.n4.prn_type;
 SEN:_;
-n: _.Number;
+n: _;
 
 
 
@@ -90,9 +124,15 @@ cnjcoo: _;
 !!!!!!!!!!!!!!!
 
 
+
+
+
 !! Personal Name
 PR_NM: _;
 PR_NM -> np {1};
+
+
+
 
 
 
@@ -103,30 +143,260 @@ CNJ -> cnjcoo {1};
 
 
 
+
+
+
+
 !! Noun Output
 
-NP -> n { (if (1.noun_case_marker = gen)
-               [of@pr ]
-            else 
-               [] ) 
-          _ 1 };
+NP -> n { 
+
+      (
+            if ((1.n2 = dem) or (1.n3 = dem2))
+                  [this@adv _ ]
+            else-if (1.n2 = dem3)
+                  [that@adv _ ]
+            else
+                  []
+      )
+
+      (
+            if (1.n6 = "cop-1-sg")
+                  [prpers@prn.poss.p1.mf.sg _ am@pprn _ ]
+            else-if (1.n6 = "cop-2-sg")
+                  [prpers@prn.poss.p2.mf.sg _ are@vbser _ ]
+            else-if (1.n6 = "cop-3-sg")
+                  [prpers@prn.poss.p3.m.sg _ is@vbser _ ]
+            else-if (1.n6 = "cop-1-pl")
+                  [prpers@prn.poss.p1.mf.pl _ are@vbser _ ]
+            else-if (1.n6 = "cop-2-pl")
+                  [prpers@prn.poss.p2.mf.pl _ are@vbser _ ]
+            else-if (1.n6 = "cop-3-pl")
+                  [prpers@prn.poss.p3.mf.pl _ are@vbser _ ]
+            else
+                  []
+      )
+
+      (
+            if (1.n3 = "1-sg-poss")
+                  [prpers@prn.poss.p1.mf.sg _ ]
+            else-if (1.n3 = "2-sg-poss")
+                  [prpers@prn.poss.p2.mf.sg _ ]
+            else-if (1.n3 = "3-sg-h-poss")
+                  [prpers@prn.poss.p3.m.sg _ ]
+            else-if (1.n3 = "3-sg-nh-poss")
+                  [prpers@prn.poss.p3.nt.sg _ ]
+            else-if (1.n3 = "1-pl-poss")
+                  [prpers@prn.poss.p1.mf.pl _ ]
+            else-if (1.n3 = "2-pl-poss")
+                  [prpers@prn.poss.p2.mf.pl _ ]
+            else-if (1.n3 = "3-pl-poss")
+                  [prpers@prn.poss.p3.mf.pl _ ]
+            else
+                  []
+      )
+
+      (
+            if (1.n5 = "dat-h")
+                  [for@cnjadv _ ]
+            else-if (1.n5 = dat-nh)
+                  [to@cnjadv _ ]
+            else-if (1.n5 = com)
+                  [with@cnjadv _ ]
+            else-if (1.n5 = abl)
+                  [from@cnjadv _ ]
+            else-if (1.n5 = term)
+                  [towards@cnjadv _ ]
+            else-if (1.n5 = l1)
+                  [in@cnjadv _ ]
+            else-if (1.n5 = "l2-h")
+                  [to@cnjadv _ ]
+            else-if (1.n5 = "l2-nh")
+                  [on@cnjadv _ ]
+            else-if (1.n5 = "l3-h")
+                  [towards@cnjadv _ ]
+            else-if (1.n5 = "l3-nh")
+                  [at@cnjadv _ ]
+            else-if (1.n5 = "gen")
+                  [of@cnjadv _ ]
+            else-if (1.n5 = "equ")
+                  [like@cnjadv _ ]
+            else-if (1.n5 = "adv")
+                  [in@cnjadv the@det manner@n of@gen _ ]
+            else
+                  [ ]
+
+      )
+
+! Noun root
+
+      (
+            if ((1.n5 = abs) and (1.n5 not = erg))
+                 [ _ 1[n4=subj] ]
+            else-if ((1.n5 = abs) and (1.n5 = erg))
+                 [ _ 1[n4=obj] ]
+            else
+                 [ _ 1 ]
+
+      )
+      };
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 !! Verb Output
+! 1. checking sub (this/that etc)
+! 2. check if there is a subject in a verb, if sub print it (here i need to rest number(sg,pl) of subject)
 
-VP -> vblex { prpers@prn.[1.prn_type].[1.Person].[1.Gender].[1.Number] _ 1 } ;
+
+VP -> vblex {
+
+! lemmas that are used pre subjective pronoun
+
+            (if (1.v1 = neg)
+                  [not@adv _ ]
+
+            else-if ( (1.v1 = mod1) and (1.v13 = pres))
+                  [it@prn is@aux possible@n that@cnjadv _ ]
+
+            else-if ((1.v1 = mod1) and (1.v13 = past))
+                  [it@prn is@aux certain@n that@cnjadv _ ]
+            
+            else-if (1.v1 = ant)
+                  [after@cnjadv _ ]
+            
+            else-if  ((1.v1 = v-pl) or (1.v1 = v-rdp))
+                  [do@vblex _ ]
+
+            else-if (1.v2 = mod2)
+                  [it@vblex is@aux]
+
+            else-if (1.v2 = mod5)
+                  [if@vblex only@aux]
+
+            else-if (1.v2 = mod7)
+                  [if@vblex is@aux certain@aux that@adv]
+
+            else-if (1.v15 = sub)
+                  [that@cnjsubj _]
+            else
+                  []
+            )
+
+! lemmas subjective pronouns
+
+            (
+            if ( (1.v14 = "1-sg-a") or (1.v14 = "1-sg-s") or (1.v11 = "1-sg-a") or (1.v11 = "1-sg-a-ob") )
+                  [prpers@prn.subj.p1.mf.sg _ ]
+            else-if ( (1.v14 = "1-pl-a") or (1.v14 = "1-pl-s") )
+                  [prpers@prn.subj.p1.mf.pl _ ]
+            else-if ((1.v14 = "2-sg-a") or (1.v14 = "2-sg-s") or (1.v11 = "2-sg-a"))
+                  [prpers@prn.subj.p2.mf.sg _ ]
+            else-if ((1.v14 = "2-pl-a") or (1.v14 = "2-pl-s"))
+                  [prpers@prn.subj.p2.mf.pl _ ]
+            else-if ((1.v14 = "3-sg-a") or (1.v14 = "3-sg-s") or (1.v14 = "3-sg-s-ob") or (1.v11 = "3-sg-h-a"))
+                  [prpers@prn.subj.p3.m.sg _ ]
+            else-if ((1.v14 = "3-pl-a") or (1.v14 = "3-pl-s"))
+                  [prpers@prn.subj.p3.m.pl _ ]
+            else
+                  []
+            )
+
+! lemmas which are required after subjective pronoun or are connected to subjective pronouns
+
+            (
+            if (1.v2 = mod3)
+                  [do@vblex not@adv]
+            else-if (1.v2 = mod2)
+                  [intention@n to@n]
+            else-if (1.v2 = mod4)
+                  (
+                  if (1.v13 = past)
+                        [certainly@adv  _ not@adv]
+                  else
+                        [will@vblex.inf  _ not@adv]
+                  )
+            else
+                  []
+            )
+
+
+
+! the verb 
+            _ 1 _
+
+
+
+! lemmas before objective pronoun
+
+            (
+            if (1.v4 = ven)
+                  [towards@cnjadv _ ]
+            if (1.v7 = dat)
+                  [for@cnjadv _ ]
+            if (1.v8 = com)
+                  [with@cnjadv _ ]
+            if (1.v9 = abl)
+                  [from@cnjadv _ ]
+            if (1.v9 = term)
+                  [towards@cnjadv _ ]
+            if ((1.v10 = l1) or (1.v10 = l1-syn))
+                  [in@cnjadv]
+            if ((1.v10 = l2) or (1.v10 = l2-syn))
+                  [on@cnjadv]
+            if (1.v10 = l3)
+                  [at@cnjadv] 
+            )
+
+
+
+! objective lemmas pronouns
+            (
+            if ((1.v14 = "1-sg-p") or (1.v6 = "1-sg"))
+                  [prpers@prn.obj.p1.mf.sg _ ]
+            else-if (1.v6 = "1-pl")
+                  [prpers@prn.obj.p1.mf.pl _ ]
+            else-if ((1.v14 = "2-sg-p") or (1.v6 = "2-sg"))
+                  [prpers@prn.obj.p2.mf.sg _ ]
+            else-if ((1.v14 = "3-sg-p") or (1.v11 = "3-sg-h-p") or (1.v11 = "3-sg-h-l3") or (1.v6 = "3-sg-h"))
+                  [prpers@prn.obj.p3.m.sg _ ]
+            else-if ((1.v11 = "3-sg-nh-p") or (1.v11 = "3-sg-nh-l3") or (1.v5 = "3-nh"))
+                  [prpers@prn.obj.p3.nt.sg _ ]
+            else-if ((1.v14 = "3-pl-p") or (1.v11 = "3-pl-h-p") or (1.v6 = "3-pl"))
+                  [prpers@prn.obj.p3.m.pl _ ]
+            else
+                  []
+            )
+};
+
+
 
 
 
 !! The final order we need
 
+!SEN -> NP NP VP { 3 _ 1 _ 2 } | 
+!      NP VP { 2 _ 1 };
 
-SEN -> NP NP VP { 3 _ 1 _ 2 } | 
-      NP VP { 2 _ 1 };
 
 
+!SEN -> NP { (if (1.prn_type = obj)
+!            subj@n 
+!            )
+!            _ 1 };
 
 
 

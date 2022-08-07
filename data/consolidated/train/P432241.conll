@@ -1,0 +1,10 @@
+# global.columns = ID WORD SEGM POS MORPH HEAD EDGE MISC
+# train/P432241.atf
+# tr.en: To Meslamtaea his god Lunimgira for life of Szulgi
+1	{d}mes-lam-ta-e3-a	Meslamta'e'a[1]	DN	DN	0	root	_	
+2	dingir-a-ni	_[his.god]	PN	N.3-SG-H-POSS.DAT-H	0	_	_	
+3	lu2-nimgir-ke4	_[Lunimgira]	PN	PN.ERG	2	appos	_	
+4	nam-ti	namtil[life]	PN	N	2	TERM	_	
+5	szul-gi-sze3	_[of.Szulgi]	PN	RN.GEN.TERM	4	GEN	_
+	
+
