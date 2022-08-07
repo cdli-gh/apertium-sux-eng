@@ -1,28 +1,75 @@
+! Rules to write
+! 1. if the vblex plural(verb repeates) make the preceddding noun plural
+!
+!
+!
+!
+!
+!
+!
+
+
+
+
+
+
 !!!!!!!!!!!!!!!
 !! ATTRIBUTE CATEGORIES
 !!!!!!!!!!!!!!!
 
-Number = sg pl;
-Gender = m f mf;
-Tense = pres past;
-SubObj = subj obj;
+Demonstrative = dem dem2 dem3;
 Person = p1 p2 p3;
-NounCase = gen case_into case_from case_with case_toward case_like_as  case_for;
+Number = (Nm sg) sg pl ord RDP;
+prn_type = subj obj poss;
+Gender = (GD m) m f mf;
+Human_NonHuman = h nh;
+noun_case_marker = (case_m abs) abs erg dat com abl term l1 l2 l3 l4 gen equ adv;
+Copula = cop except;
+
+
+
+
+
+! number will take care of pl and rdp
+! case marker will take care of l1, l2 and l3
+! person will take care of p1, p2 P3
+! Human_NonHuman will same as of noun h, nh used in 
+! ini_pron_pref is similar to to take out the person we are talking about
+
+
+verb_case_marker = l1 l2 l3;
+dim_4_marker = ob syn;
+
+mod_pref = neg ant stem mod1 mod2 mod3 mod4 mod5 mod6 mod7;
+!fin_marker = fin;
+!coor_pref = coor;
+!vent_pref = ven;
+!mid_pref = mid;
+!persons = p1 p2 p3; 
+!dim1 = dat;
+!dim2 = com;
+dim3_pref = abl term;
+dim4_pref = [verb_case_marker] loc;
+fin_pron_pref_a_p = a p ob l3;
+v_stem = stem cop;
+pf_marker = pf plen;
+pron_suf = a subj p; 
+sub_pref = sub; 
+Tense = pres past pf;
 
 
 !!!!!!!!!!!!!!!
-!! ATTRIBUTE CATEGORIES
+!! Patterns
 !!!!!!!!!!!!!!!
-
 !! ===== Patterns =============
 !! this is an output pattern, _ denotes the tag iteself like (prn) here,and then the other tags we need
 !! the subtags may or may not be present, so there can be empty at the place of Person,Gender etc.
 !! Here VP, NP etc are tags to the chunks in reduction rules, 
 
 
-prn: _.SubObj.Person.Gender.Number;
+prn: _.prn_type.Person.Gender.Number;
 vblex: _.Tense;
-det:_;
+det: _;
 VP: _;
 NP: _;
 SEN:_;
@@ -30,8 +77,12 @@ n: _.Number;
 
 
 
-!! ===== Personal Noun (Names etc) =============
-np: %;
+!! ===== Personal Noun (Names etc) and cnjcoo =============
+np: _;
+cnjcoo: _;
+
+
+
 
 
 !!!!!!!!!!!!!!!
@@ -39,29 +90,41 @@ np: %;
 !!!!!!!!!!!!!!!
 
 
-!! a.] Verb Output
+!! Personal Name
+PR_NM: _;
+PR_NM -> np {1};
 
-VP -> vblex { prpers@prn.[1.SubObj].[1.Person].[1.Gender].[1.Number] _ 1 } ;
 
 
-!! b.] Noun Output
+!! conjucation
+CNJ: _;
+CNJ -> cnjcoo {1};
 
-NP -> n { (if (1.NounCase = gen)
-               [of@pr]
-            else
+
+
+
+!! Noun Output
+
+NP -> n { (if (1.noun_case_marker = gen)
+               [of@pr ]
+            else 
                [] ) 
           _ 1 };
 
 
-!! c.] The final order we need
+
+
+!! Verb Output
+
+VP -> vblex { prpers@prn.[1.prn_type].[1.Person].[1.Gender].[1.Number] _ 1 } ;
+
+
+
+!! The final order we need
 
 
 SEN -> NP NP VP { 3 _ 1 _ 2 } | 
       NP VP { 2 _ 1 };
-
-!! b.] Personal Name
-PR_NM:_;
-PR_NM -> np {1};
 
 
 
