@@ -94,10 +94,10 @@ house of king he built
 ### Translation Testing
 For the testing we are using the **dev** data from the [mtaac_syntax_corpus](https://github.com/cdli-gh/mtaac_syntax_corpus) \
 For the python script or testing on a new data checkout [sux_apertium_test.ipynb](sux_apertium_test.ipynb) \
-The evaluation is done using the BLEU metric and the current rule based model score - \
-**RBMT BLEU SCORE -** 6.24  
-\* with weightage (0.75,0.25,0,0) over n-grames
 
+The evaluation is done using the BLEU metric and the current rule based model score - \
+**RBMT BLEU SCORE -** 9.0025  
+\* with weightage (0.75,0.25,0,0) over n-grames
 
 <br>
 
