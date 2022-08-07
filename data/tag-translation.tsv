@@ -1,0 +1,119 @@
+translating sumerian tags (ETCSRI inventory)				
+				
+POS	slot	tag	translation	comment
+V	V1	NEG	not	
+		MOD1	it is possible that ... (with present tense) OR it is certain that ... (with past tense)	modal prefix ha-, Zolyomi 2016:173
+		ANT	after	anteriority
+		STEM-PL	do [plural+imperative]	plural; if stem occurs here, this is an imperative!
+		STEM-RDP	do [imperative]	reduplication; if stem occurs here, this is an imperative!
+	V2	MOD2	it is my (our) intention to ...	modal prefix ga-, cf. Zolyomi 2016:172
+		MOD3	do not (= negative imperative) or may (he) not	modal prefix nan-, Zolyomi 2016:176
+		MOD4	certainly not (with past tense) or I (we) will not (with present tense)	modal prefix bara-, Zolyomi 2016:175f.
+		MOD5	if only ... [= unrealizable wish]	modal prefix nusz-, Zolyomi 2016:174
+		MOD6	[none, interpretation debated]	modal prefix szi-, Zolyomi 2016:177 (sza)
+		MOD7	it is certain that ...	modal prefix na-, Zolyomi 2016:177
+		FIN	[finite]	finite verb
+		FIN-LI	[finite+L1]	see L1
+		FIN-L2	[finite+L2]	see L2
+	V3	COOR	and	coordinator (between clauses)
+	V4	VEN	towards	spatial or emotional movements towards the speaker
+	V5	MID	it was ...	middle prefix (middle voice is similar to passive and translated as such here)
+		3-NH	[prep] + it	3rd sg. non-human (initial pronominal prefix)
+	V6	1-SG	[prep] + me	first person singular initial pronominal prefix (= IPP)
+		2-SG	[prep] + you	
+		3-SG-H	[prep] + him (her)	
+		1-PL	[prep] + us	
+		3-PL	[prep] + them	
+	V7	DAT	for [pronoun]	pronoun from V5 or V6
+	V8	COM	with [pronoun]	pronoun from V5 or V6, if V7 isn'tused
+	V9	ABL	from [pronoun]	pronoun from V5 or V6, if V7 and V8 aren't used
+		TERM	towards [pronoun]	pronoun from V5 or V6, if V7 and V8 aren't used
+	V10	L1	in [pronoun], into [pronoun]	locative 1 (inessive, illative)
+		LOC-OB	[pronoun] made [verb]	shouldn't occur: locative prefix used as causative marker in OB texts
+		L1-SYN	same as L1	see L1
+		L2	on [pronoun], to [pronoun]	locative 2 (superessive, sublative)
+		L2-SYN	same as L2	see L2
+		L3	near [pronoun], at [pronoun], towards [pronoun]	locative 3 (adessive, allative)
+	V11	1-SG-A	I (subject)	first person singular final pronominal prefix (= FPP) construed with an agent
+		2-SG-A	you (subject)	maybe translate 2 SG as "thou" to keep SG and PL apart
+		3-SG-H-A	he (subject)	
+		3-SG-H-P	him (object)	
+		3-SG-H-L3	[prep] + him (her)	see L3
+		1-SG-A-OB	same as 1-SG-A	see 1-SG-A
+		3-SG-NH-A	it (subject)	
+		3-SG-NH-P	it (object)	
+		3-SG-NH-L3	[prep] + it	see L3
+		3-PL-H-P	them (object)	
+	V12	COP	is (be)	normally, the position of the verb
+	V13	PF	[present tense]	translate as present; of no PF and no imperative, translate as past
+		PLEN	[patient in plural]	
+	V14	1-SG-A	see V11	
+		1-SG-S	see 1-SG-A	
+		1-SG-P	me (object)	
+		2-SG-A	see V11	
+		2-SG-S	see 2-SG-A	
+		2-SG-P	you (object)	maybe translate 2 SG as "thou" to keep SG and PL apart
+		3-SG-S	he (subject)	
+		3-SG-P	him (object)	
+		3-SG-A	see 3-SG-S	
+		3-SG-S-OB	same as 3-SG-S	
+		1-PL-A	we (subject)	
+		1-PL-S	see 1-PL-A	
+		1-PL	?we (subject or object) + past tense	first person plural suffix in plural transitive preterite verbal forms
+		2-PL-A	you (subject)	
+		2-PL-S	same as 2-PL-A	
+		2-PL	?you (subject or object) + past tense	second person plural suffix in plural transitive preterite verbal forms
+		etc.		
+	V15	SUB	that [+ relative clause]	subordinator
+				
+N				Note: a noun can have the slots N2-N5 repeated up to three times. the last iteration applies to the current word, the one before to its syntactic head (last noun), etc.
+	N2	DEM	this	demonstrative
+		DEM3	that	demonstrative
+	N3	1-SG-POSS	my	
+		2-SG-POSS	your (sg)	maybe write thy to mar it as singulatr
+		3-SG-H-POSS	his	
+		3-SG-NH-POSS	its	
+		DEM2	this	demonstrative
+		1-PL-POSS	our	
+		2-PL-POSS	your (pl)	
+		3-PL-POSS	their	
+	N4	PL	[plural]	
+		ORD	[ordinal]	for numbers, e.g., 7th
+	N5			NOTE: if a syntactic argument exists *and* the verb has the same "dimensional prefix", then do not generate a pronoun from the dimensional prefix of the verb
+		ABS	[subject if no ERG/transitive, direct object if ERG/transitive]	a clause is transitive if either it has an ERG argument or it if its verb has annotations for both V11 and V14]
+		ERG	[subject]	
+		DAT-H	for ...	dative, human
+		DAT-NH	to ...	dative, non-human
+		COM	with ...	
+		ABL	from ...	
+		TERM	towards ... OR (in order) to ... 	
+		L1	in ... OR into ...	
+		L2-H	to ...	
+		L2-NH	on ...	
+		L3-H	towards ...	
+		L3-NH	at ... OR near ...	
+		GEN	of ...	
+		EQU	like ...	
+		L4	?	archaic locative, shouldn't occur, Zolyomi 2016:66
+		ADV	in the manner of	examples in Zolyomi 2016
+	N6	COP-1-SG	I am	
+		COP-2-SG	you (thou) are	
+		COP-3-SG	he is	
+		COP-1-PL	we are	
+		COP-2-PL	you are	
+		COP-3-PL	they are	
+		EXCEPT	???	" For /nanna/ cf. Edzard 2003: 158 and Veenker and Johnson 2009: 361–362."
+				
+NV				
+	NV1	NEG	not	
+	NV2	[stem, see V12]	[stem, see V12]	
+	NV3	PF	[present tense]	
+	NV4	SUB	[see V14]	
+				
+Notes				
+		SUB	after SUB, nominal slots N2-N5 (with iterations) and N6 can follow	
+		COP	after COP in N6, SUB can follow	
+		complex morphology	is less likely to occur in our data, focus on examples that you have data for	
+		adjectives	are nominalized verbs in Sumerian, check the English translation on whether anything is an adjective; if it contains SUB, you can ignore that	
+		SUB	sometimes, SUB is not written, if any nominal annotation follows a verbal annotation, this is nominalized	
+		RDP	reduplication. ignore in translation for the moment, it can mean "very" or "all" or "many"	
