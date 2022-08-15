@@ -757,11 +757,23 @@
 
 <!-- verbs -->
 
-
+<!-- christians added vocab -->
+<e><p><l>ag2<s n="vblex"/></l><r>measure<s n="vblex"/></r></p></e>
+<e><p><l>ak<s n="vblex"/></l><r>do<s n="vblex"/></r></p></e>
+<e><p><l>ba<s n="vblex"/></l><r>allot<s n="vblex"/></r></p></e>
+<e><p><l>du3<s n="vblex"/></l><r>build<s n="vblex"/></r></p></e>
+<e><p><l>dug<s n="vblex"/></l><r>speak<s n="vblex"/></r></p></e>
 <e><p><l>e3<s n="vblex"/></l><r>leave<s n="vblex"/></r></p></e>
+<e><p><l>gal2<s n="vblex"/></l><r>exist<s n="vblex"/></r></p></e>
+<e><p><l>hug<s n="vblex"/></l><r>hire<s n="vblex"/></r></p></e>
+<e><p><l>hulu<s n="vblex"/></l><r>destroy<s n="vblex"/></r></p></e>
+<e><p><l>sa<s n="vblex"/></l><r>pay<s n="vblex"/></r></p></e>
+<e><p><l>ur3<s n="vblex"/></l><r>erase<s n="vblex"/></r></p></e>
 
 
-<e><p><l>du3<s n="vblex"/></l><r>built<s n="vblex"/></r></p></e>
+
+
+
 <e><p><l>dug<s n="vblex"/></l><r>perform<s n="vblex"/></r></p></e>
 <e><p><l>gaz<s n="vblex"/></l><r>thresh<s n="vblex"/></r></p></e>
 <e><p><l>du<s n="vblex"/></l><r>build<s n="vblex"/></r></p></e>

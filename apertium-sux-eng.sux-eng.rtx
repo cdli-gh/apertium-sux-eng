@@ -62,7 +62,7 @@ v15 = sub;
 Demonstrative = dem dem2 dem3;
 Person = p1 p2 p3;
 Number = (Nm sg) sg pl ord RDP;
-prn_type = (PRN subj) subj obj poss;
+prn_type = (obj obj) subj obj poss indobj;
 Gender = (GD m) m f mf;
 Human_NonHuman = h nh;
 noun_case_marker = (case_m abs) abs erg dat com abl term l1 l2 l3 l4 gen equ adv;
@@ -88,9 +88,9 @@ n6 = cop-1-sg cop-2-sg cop-3-sg cop-1-pl cop-2-pl cop-3-pl except;
 prn: _.prn_type.Person.Gender.Number;
 vP2: _;
 vP14: _.v13.Number;
-vblex: _.v13.Number;
+vblex: _.v13;
 det: _;
-VP: _.v13.Number;
+VP: _.v13;
 NP: _.n4.prn_type;
 SEN:_;
 n: _;
@@ -125,6 +125,148 @@ PR_NM -> np {1};
 !! conjucation
 CNJ: _;
 CNJ -> cnjcoo {1};
+
+
+
+
+
+
+
+
+
+
+
+
+!! Verb Output
+! 1. checking sub (this/that etc)
+! 2. check if there is a subject in a verb, if sub print it (here i need to rest number(sg,pl) of subject)
+
+
+VP -> vblex {
+
+! lemmas that are used pre subjective pronoun
+
+            (if (1.v1 = neg)
+                  [not@adv _ ]
+
+            else-if ( (1.v1 = mod1) and (1.v13 = pres))
+                  [it@prn is@aux possible@n that@cnjadv _ ]
+
+            else-if ((1.v1 = mod1) and (1.v13 = past))
+                  [it@prn is@aux certain@n that@cnjadv _ ]
+            
+            else-if (1.v1 = ant)
+                  [after@cnjadv _ ]
+            
+            else-if  ((1.v1 = v-pl) or (1.v1 = v-rdp))
+                  [do@vblex _ ]
+
+            else-if (1.v2 = mod2)
+                  [it@vblex is@aux _ ]
+
+            else-if (1.v2 = mod5)
+                  [if@vblex only@aux _ ]
+
+            else-if (1.v2 = mod7)
+                  [if@vblex is@aux certain@aux that@adv _ ]
+
+            else-if (1.v15 = sub)
+                  [that@cnjsubj _]
+            else
+                  []
+            )
+
+! lemmas subjective pronouns
+
+            (
+            if ( (1.v14 = "1-sg-a") or (1.v14 = "1-sg-s") or (1.v11 = "1-sg-a") or (1.v11 = "1-sg-a-ob") )
+                  [prpers@prn.subj.p1.mf.sg _ ]
+            else-if ( (1.v14 = "1-pl-a") or (1.v14 = "1-pl-s") )
+                  [prpers@prn.subj.p1.mf.pl _ ]
+            else-if ((1.v14 = "2-sg-a") or (1.v14 = "2-sg-s") or (1.v11 = "2-sg-a"))
+                  [prpers@prn.subj.p2.mf.sg _ ]
+            else-if ((1.v14 = "2-pl-a") or (1.v14 = "2-pl-s"))
+                  [prpers@prn.subj.p2.mf.pl _ ]
+            else-if ((1.v14 = "3-sg-a") or (1.v14 = "3-sg-s") or (1.v14 = "3-sg-s-ob") or (1.v11 = "3-sg-h-a"))
+                  [prpers@prn.subj.p3.m.sg _ ]
+            else-if ((1.v14 = "3-pl-a") or (1.v14 = "3-pl-s"))
+                  [prpers@prn.subj.p3.m.pl _ ]
+            else
+                  []
+            )
+
+! lemmas which are required after subjective pronoun or are connected to subjective pronouns
+
+            (
+            if (1.v2 = mod3)
+                  [do@vblex not@adv _ ]
+            else-if (1.v2 = mod2)
+                  [intention@n to@n _ ]
+            else-if (1.v2 = mod4)
+                  (
+                  if (1.v13 = past)
+                        [certainly@adv  _ not@adv _ ]
+                  else
+                        [will@vblex.inf  _ not@adv _ ]
+                  )
+            else-if (1.v5 = mid)
+                  [was@vblex _ ]
+            else
+                  []
+            )
+
+
+
+! the verb 
+            _ 1 _
+
+
+
+! lemmas before objective pronoun
+
+            (
+            if (1.v7 = dat)
+                  [for@cnjadv _ ]
+            if (1.v8 = com)
+                  [with@cnjadv _ ]
+            if (1.v9 = abl)
+                  [from@cnjadv _ ]
+            if (1.v9 = term)
+                  [towards@cnjadv _ ]
+            if ((1.v10 = l1) or (1.v10 = l1-syn))
+                  [in@cnjadv _ ]
+            if ((1.v10 = l2) or (1.v10 = l2-syn))
+                  [on@cnjadv _ ]
+            if (1.v10 = l3)
+                  [at@cnjadv _ ] 
+            if (1.v4 = ven)
+                  [towards@cnjadv _ ]
+            )
+
+
+
+! objective lemmas pronouns
+            (
+            if ((1.v14 = "1-sg-p") or (1.v6 = "1-sg"))
+                  [prpers@prn.obj.p1.mf.sg _ ]
+            else-if (1.v6 = "1-pl")
+                  [prpers@prn.obj.p1.mf.pl _ ]
+            else-if ((1.v14 = "2-sg-p") or (1.v6 = "2-sg"))
+                  [prpers@prn.obj.p2.mf.sg _ ]
+            else-if ((1.v14 = "3-sg-p") or (1.v11 = "3-sg-h-p") or (1.v11 = "3-sg-h-l3") or (1.v6 = "3-sg-h"))
+                  [prpers@prn.obj.p3.m.sg _ ]
+            else-if ((1.v11 = "3-sg-nh-p") or (1.v11 = "3-sg-nh-l3") or (1.v5 = "3-nh"))
+                  [prpers@prn.obj.p3.nt.sg _ ]
+            else-if ((1.v14 = "3-pl-p") or (1.v11 = "3-pl-h-p") or (1.v6 = "3-pl"))
+                  [prpers@prn.obj.p3.m.pl _ ]
+            else
+                  []
+            )
+};
+
+
+
+
 
 
 
@@ -222,7 +364,7 @@ NP -> n {
             else-if ((1.n5 = abs) and (1.n5 = erg))
                  [ _ 1[n4=obj] ]
             else
-                 [ _ 1 ]
+                 [ _ 1[prn_type = indobj] ]
 
       )
       };
@@ -235,138 +377,15 @@ NP -> n {
 
 
 
-
-
-
-
-
-
-
-
-!! Verb Output
-! 1. checking sub (this/that etc)
-! 2. check if there is a subject in a verb, if sub print it (here i need to rest number(sg,pl) of subject)
-
-
-VP -> vblex {
-
-! lemmas that are used pre subjective pronoun
-
-            (if (1.v1 = neg)
-                  [not@adv _ ]
-
-            else-if ( (1.v1 = mod1) and (1.v13 = pres))
-                  [it@prn is@aux possible@n that@cnjadv _ ]
-
-            else-if ((1.v1 = mod1) and (1.v13 = past))
-                  [it@prn is@aux certain@n that@cnjadv _ ]
-            
-            else-if (1.v1 = ant)
-                  [after@cnjadv _ ]
-            
-            else-if  ((1.v1 = v-pl) or (1.v1 = v-rdp))
-                  [do@vblex _ ]
-
-            else-if (1.v2 = mod2)
-                  [it@vblex is@aux]
-
-            else-if (1.v2 = mod5)
-                  [if@vblex only@aux]
-
-            else-if (1.v2 = mod7)
-                  [if@vblex is@aux certain@aux that@adv]
-
-            else-if (1.v15 = sub)
-                  [that@cnjsubj _]
+SEN -> NP VP {
+      (
+            if (1.prn_type=indobj)
+            [2 _ 1]
             else
-                  []
-            )
+            [1 _ 2]
+      )
+      };
 
-! lemmas subjective pronouns
-
-            (
-            if ( (1.v14 = "1-sg-a") or (1.v14 = "1-sg-s") or (1.v11 = "1-sg-a") or (1.v11 = "1-sg-a-ob") )
-                  [prpers@prn.subj.p1.mf.sg _ ]
-            else-if ( (1.v14 = "1-pl-a") or (1.v14 = "1-pl-s") )
-                  [prpers@prn.subj.p1.mf.pl _ ]
-            else-if ((1.v14 = "2-sg-a") or (1.v14 = "2-sg-s") or (1.v11 = "2-sg-a"))
-                  [prpers@prn.subj.p2.mf.sg _ ]
-            else-if ((1.v14 = "2-pl-a") or (1.v14 = "2-pl-s"))
-                  [prpers@prn.subj.p2.mf.pl _ ]
-            else-if ((1.v14 = "3-sg-a") or (1.v14 = "3-sg-s") or (1.v14 = "3-sg-s-ob") or (1.v11 = "3-sg-h-a"))
-                  [prpers@prn.subj.p3.m.sg _ ]
-            else-if ((1.v14 = "3-pl-a") or (1.v14 = "3-pl-s"))
-                  [prpers@prn.subj.p3.m.pl _ ]
-            else
-                  []
-            )
-
-! lemmas which are required after subjective pronoun or are connected to subjective pronouns
-
-            (
-            if (1.v2 = mod3)
-                  [do@vblex not@adv]
-            else-if (1.v2 = mod2)
-                  [intention@n to@n]
-            else-if (1.v2 = mod4)
-                  (
-                  if (1.v13 = past)
-                        [certainly@adv  _ not@adv]
-                  else
-                        [will@vblex.inf  _ not@adv]
-                  )
-            else
-                  []
-            )
-
-
-
-! the verb 
-            _ 1 _
-
-
-
-! lemmas before objective pronoun
-
-            (
-            if (1.v4 = ven)
-                  [towards@cnjadv _ ]
-            if (1.v7 = dat)
-                  [for@cnjadv _ ]
-            if (1.v8 = com)
-                  [with@cnjadv _ ]
-            if (1.v9 = abl)
-                  [from@cnjadv _ ]
-            if (1.v9 = term)
-                  [towards@cnjadv _ ]
-            if ((1.v10 = l1) or (1.v10 = l1-syn))
-                  [in@cnjadv]
-            if ((1.v10 = l2) or (1.v10 = l2-syn))
-                  [on@cnjadv]
-            if (1.v10 = l3)
-                  [at@cnjadv] 
-            )
-
-
-
-! objective lemmas pronouns
-            (
-            if ((1.v14 = "1-sg-p") or (1.v6 = "1-sg"))
-                  [prpers@prn.obj.p1.mf.sg _ ]
-            else-if (1.v6 = "1-pl")
-                  [prpers@prn.obj.p1.mf.pl _ ]
-            else-if ((1.v14 = "2-sg-p") or (1.v6 = "2-sg"))
-                  [prpers@prn.obj.p2.mf.sg _ ]
-            else-if ((1.v14 = "3-sg-p") or (1.v11 = "3-sg-h-p") or (1.v11 = "3-sg-h-l3") or (1.v6 = "3-sg-h"))
-                  [prpers@prn.obj.p3.m.sg _ ]
-            else-if ((1.v11 = "3-sg-nh-p") or (1.v11 = "3-sg-nh-l3") or (1.v5 = "3-nh"))
-                  [prpers@prn.obj.p3.nt.sg _ ]
-            else-if ((1.v14 = "3-pl-p") or (1.v11 = "3-pl-h-p") or (1.v6 = "3-pl"))
-                  [prpers@prn.obj.p3.m.pl _ ]
-            else
-                  []
-            )
-};
 
 
 
