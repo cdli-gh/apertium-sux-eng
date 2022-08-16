@@ -407,7 +407,7 @@ P100179
 	11	sze-ka	_[of.barley]	N	N
 	12	i3-gal2	i[-ni]-gal[be][-ø]	V	FIN.L1.V.3-SG-S
 
-"Filing basket. Several years. Barley rations. Barley of troops and (from) repayment accounts of barley. it is here"
+"Filing basket. Several years. Barley rations. Barley of troops and from repayment accounts of barley is here"
 
 # year names
 
