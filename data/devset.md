@@ -186,9 +186,18 @@ do not translate (no CDLI examples with translation found)
 - `VEN` "towards" (no example with literal translation found)
 - `LOC-OB` is unclear (yet another locative, not in our data)
 
+### more verbs
+
 	mu-na-dim2	mu-nn-a-dim[create][-ø]	V	VEN.3-SG-H.DAT.3-SG-H-A.V.3-SG-P
 	"he (=3.SG-H-A) created it (=3-SG-P) for him (=3-SG-H.DAT)"
 
+P100179
+
+	i3-gal2	i[-ni]-gal[be][-ø]	V	FIN.L1.V.3-SG-S
+	"it (=3-SG-S) is (gal) here (=L1)"
+
+	bi2-in-du8	_[was.caulked.By]	V	3-SG-NH.L3.3-SG-H-A.V.3-SG-P
+	"he (3-SG-H-A) caulked it (=3-SG-P) then (=3-SG-NH.L3)"
 
 ## nouns (N,PN, ...N) and nominalized verbs (NF.V ~ adjective; NU = numeral; .PT or .SUB marks nominalization)
 
@@ -295,6 +304,15 @@ P500941
 
 	"Ur-..., soldier of (=GEN, line 19) the king, son of (=GEN, line 21) Ur-Abba"
 
+P100179
+
+	17	ma2-dara3-abzu	Madara'abzu[1]	ON	ON
+	18	{d}en-ki-ka	Enkik[1][-ak]	DN	DN.GEN.ABS
+
+	"the Madara'abzu of Enki"
+
+	(also "the boat Ibex-of-Apsu of Enki")
+
 ## "sentences"
 
 P500941
@@ -335,4 +353,75 @@ P500941
 	"For the life of Szusuen, strong king, king of Urim, king of the four quarters, Ur-..., soldier of the king, son of Ur-Abba, fashioned this for Szara, jewel of An, loved child of Inanna, his lord"
 
 	(word order doesn't matter, both TERM and DAT can be translated as "for", TERM also as "towards")
+
+# transactions
+
+most transactions are without verbs. instead, there are key phrases that work like prepositions:
+
+P100179
+
+	2	mu	mu[year]	N	N
+	3	didli	didli[several][-ø][-ak]	V	NF.V.ABS
+
+	"several years"
+
+P100179
+
+	1	pisan-dub-ba	bisagdubak[filing_basket]	N	N
+	2	mu	mu[year]	N	N
+	3	didli	didli[several][-ø][-ak]	V	NF.V.ABS
+	4	sze-ba	szeba[ration]	N	N.ABS
+
+	"filing basket, several years, rations"
+
+P100179
+
+	5	sze	sze[barley]	N	N
+	6	erin2-na	erin[people]	N	N.GEN
+
+	"barley of people" (= "barley of troops")
+
+P100179
+
+	8	sza3-bi	szag[heart]-bi[-ta]	N	N.3-SG-NH-POSS.ABL
+	9	su-ga	sug[repay]-a	V	NF.V.PT
+	10	nig2-ka9	nigSZID[account]	N	N
+	11	sze-ka	_[of.barley]	N	N.GEN
+	"from repayment accounts of barley" lit. "from the heart of repayment accounts of barley"
+
+note that MTAAC annotations put the case for these nominal "prepositions" on the "preposition", not on the end of the phrase. there is a list of such nominal "prepositions", only these act like this.
+
+yes, sza3-bi "heart" is used here like "center", ie., "from the heart of" ! this is not a preposition, but should be translated as such
+
+P100179
+	1	pisan-dub-ba	bisagdubak[filing_basket]	N	N
+	2	mu	mu[year]	N	N
+	3	didli	didli[several][-ø][-ak]	V	NF.V.ABS
+	4	sze-ba	szeba[ration]	N	N
+	5	sze	sze[barley]	N	N
+	6	erin2-na	erin[people]	N	N.GEN
+	7	u3	u[and]	CNJ	CNJ
+	8	sza3-bi	szag[heart]-bi[-ta]	N	N.3-SG-NH-POSS.ABL
+	9	su-ga	sug[repay]-a	V	NF.V.PT
+	10	nig2-ka9	nigSZID[account]	N	N
+	11	sze-ka	_[of.barley]	N	N
+	12	i3-gal2	i[-ni]-gal[be][-ø]	V	FIN.L1.V.3-SG-S
+
+"Filing basket. Several years. Barley rations. Barley of troops and (from) repayment accounts of barley. it is here"
+
+# year names
+
+you need a special rule for mu "year":
+
+P100179
+
+	13	mu	mu[year]	N	N
+	14	{d}szu-{d}suen	Szusuen[1]	RN	RN
+	15	lugal	lugal[king]	N	N
+	16	uri5{ki}-ma-ke4	Urim[1]-ak-e	SN	SN.GEN.ERG
+	17	ma2-dara3-abzu	Madara'abzu[1]	ON	ON
+	18	{d}en-ki-ka	Enkik[1][-ak]	DN	DN.GEN.ABS
+	19	bi2-in-du8	_[was.caulked.By]	V	3-SG-NH.L3.3-SG-H-A.V.3-SG-P
+
+	"in (=3-SG-NH.L3) the year (=mu) when (=L3+mu) Szusuen, king of Urim, caulked the Madara'abzu of Enki"
 
