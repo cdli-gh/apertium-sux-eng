@@ -6,6 +6,7 @@
 	ag (ag2) V "measure"
 	ak V "do"
 	ba V "allot"
+	dim V "create", "fashion"
 	du (du3) V "build"
 	dug V "speak" (also "swear")
 	e (e3) V "leave" (also "remove", if with `ABL`)
@@ -185,6 +186,153 @@ do not translate (no CDLI examples with translation found)
 - `VEN` "towards" (no example with literal translation found)
 - `LOC-OB` is unclear (yet another locative, not in our data)
 
-## nouns (N,PN, ...N)
+	mu-na-dim2	mu-nn-a-dim[create][-ø]	V	VEN.3-SG-H.DAT.3-SG-H-A.V.3-SG-P
+	"he (=3.SG-H-A) created it (=3-SG-P) for him (=3-SG-H.DAT)"
 
-## nominalized verbs (NV, NU)
+
+## nouns (N,PN, ...N) and nominalized verbs (NF.V ~ adjective; NU = numeral; .PT or .SUB marks nominalization)
+
+translation for the individual cases is clear, right?
+
+in the following examples, syntax has been
+
+P480071 (admin subcorpus)
+
+	s1.col1.1.1	{d}szu-{d}suen	Szusuen[1]	RN	_	_	_
+	s1.col1.2.1	lugal	lugal[king]	N	_	_	_
+	s1.col1.2.2	kal-ga	kalag[strong]-a	NF.V.PT	_	_	_
+	s1.col1.3.1	lugal	lugal[king]	N	_	_	_
+	s1.col1.3.2	uri5{ki}-ma	Urim[1]-ak	SN.GEN	_	_	_
+	s1.col1.4.1	lugal	lugal[king]	N	_	_	_
+	s1.col1.4.2	an-ub-da	anubda[quarter]	N	_	_	_
+	s1.col1.4.3	limmu2-ba	limmu[four]-bi-ak[-ø]	NU.3-SG-NH-POSS.GEN.ABS	_	_	_
+
+	(1) strong king: N or PN before NF.V.PT becomes "adjective noun"
+		noun has no inflection
+		adj can have inflection (for the noun)
+	(2) king of Urim: N before PN in genitive becomes "noun of PN"
+		PN in genitive can carry additional inflection (for the head noun)
+	(3) four quarters: N before NU becomes "NU N", NU can carry additional inflection (here, GEN.ABS) for the head noun
+	(4) king of the four quarters: N before noun (phrase) in genitive becomes "N of NP", here, we evaluate the GEN attribute of immu2-ba
+	(5) X, Y: sequence of noun phrases X Y, only the last has case marking (optional): "X, Y" or "X, the Y"; eventual case marking of the last (here ABS) defines the case of the entire phrase
+	(6) then, check whether it's an argument of a following verb
+
+cf. P500941 (royal subcorpus)
+
+	9	{d}szu-{d}suen	Szusuen[1]	RN	RN
+	10	lugal	lugal[king]	N	N
+	11	kal-ga	kalag[strong]-a	V	NF.V.SUB
+	12	lugal	lugal[king]	N	N
+	13	uri5{ki}-ma	Urim[1]-ak	SN	SN.GEN
+	14	lugal	lugal[king]	N	N
+	15	an	An[1][-ra]	N	N
+	16	ub-da	_	N	N
+	17	limmu2-ba-ka-sze3	_[quarters]	NU	NF.V.3-SG-NH-POSS.GEN.GEN.TERM
+
+the example is exactly the same (except for the entire phrase being GEN.TERM rather than ABS), the annotation is slightly different because it comes from a different subcorpus. the treatment of an-ub-da is an error in the second example, should be as in first)
+
+	"Szusuen, strong king, king of Urim, king of the four quarters"
+
+P500941
+
+	1	{d}szara2	Szara[1][-ak]	DN	DN
+	2	nir-gal2	_[jewel]	N 	N
+	3	an-na	An[1][-ak][-ak][sze]	PN	DN.GEN
+
+
+	"Szara, jewel of An" (An either god or "heaven")
+
+P500941
+	4	dumu	dumu[child]	N	N
+	5	ki-ag2	ki'ag[love][-ø]	V	NF.V
+
+	"loved child" [I guiss this will be tough to disambiguate] (actually, "beloved")
+
+P500941
+	4	dumu	dumu[child]	N	N
+	5	ki-ag2	ki'ag[love][-ø]	V	NF.V
+	6	{d}inanna	Inanna[1][-ak]	DN	DN.GEN
+
+	"loved child of Inanna" 
+
+P500941
+
+	1	{d}szara2	Szara[1][-ak]	DN	DN
+	7	lugal-a-ni-ir	_[his.lord]	N	N.3-SG-H-POSS.DAT-H
+
+	"for (=DAT-H) Szara, his lord"
+
+P500941
+	1	{d}szara2	Szara[1][-ak]	DN	DN
+	2	nir-gal2	_[jewel]	N 	N
+	3	an-na	An[1][-ak][-ak][sze]	PN	DN.GEN
+	4	dumu	dumu[child]	N	N
+	5	ki-ag2	ki'ag[love][-ø]	V	NF.V
+	6	{d}inanna	Inanna[1][-ak]	DN	DN.GEN
+	7	lugal-a-ni-ir	_[his.lord]	N	N.3-SG-H-POSS.DAT-H
+
+	"for Szara, jewel of An, loved child of Inanna, his lord"
+
+P500941
+	8	nam-ti	namtil[life]	N	N
+	9	{d}szu-{d}suen	Szusuen[1]	RN	RN
+	10	lugal	lugal[king]	N	N
+	11	kal-ga	kalag[strong]-a	V	NF.V.SUB
+	12	lugal	lugal[king]	N	N
+	13	uri5{ki}-ma	Urim[1]-ak	SN	SN.GEN
+	14	lugal	lugal[king]	N	N
+	15	an-ub-da	[quarters]	N	N
+	16	limmu2-ba-ka-sze3	[four]-b-ak-ak-sze	NU	NF.V.3-SG-NH-POSS.GEN.GEN.TERM
+
+	"for (=TERM) the life (=nam-ti) of (=2nd GEN in 16) Szusuen, strong king, king of Urim, king of (= first GEN in 16) the four quarters"
+
+P500941
+	17	ur-{d}...	_[1][-ra]	PN	PN
+	18	aga3-us2	aga'us[soldier]	N	N
+	19	lugal	lugal[king][-ak]	N	N.GEN
+	20	dumu	dumu[child]	N	N
+	21	ur-ab-ba-ke4	_[Ur-abba]	PN	PN.GEN.ERG
+
+	"Ur-..., soldier of (=GEN, line 19) the king, son of (=GEN, line 21) Ur-Abba"
+
+## "sentences"
+
+P500941
+
+	# consolidated/train/P500941.conll-# tr.en: For Szara jewel of heaven beloved child of Inanna his lord for life of Szu-Suen strong king king of Ur king of four quarters did Ur- royal soldier son of Ur-abba this fashion
+
+	1	{d}szara2	Szara[1][-ak]	DN	DN
+	2	nir-gal2	_[jewel]	N 	N
+	3	an-na	An[1][-ak][-ak][sze]	PN	DN.GEN
+	4	dumu	dumu[child]	N	N
+	5	ki-ag2	ki'ag[love][-ø]	V	NF.V
+	6	{d}inanna	Inanna[1][-ak]	DN	DN.GEN
+	7	lugal-a-ni-ir	_[his.lord]	N	N.3-SG-H-POSS.DAT-H
+	8	nam-ti	namtil[life]	N	N
+	9	{d}szu-{d}suen	Szusuen[1]	RN	RN
+	10	lugal	lugal[king]	N	N
+	11	kal-ga	kalag[strong]-a	V	NF.V.SUB
+	12	lugal	lugal[king]	N	N
+	13	uri5{ki}-ma	Urim[1]-ak	SN	SN.GEN
+	14	lugal	lugal[king]	N	N
+	15	an-ub-da	[quarters]	N	N
+	16	limmu2-ba-ka-sze3	[four]-b-ak-ak-sze	NU	NF.V.3-SG-NH-POSS.GEN.GEN.TERM
+	17	ur-{d}...	_[1][-ra]	PN	PN
+	18	aga3-us2	aga'us[soldier]	N	N
+	19	lugal	lugal[king][-ak]	N	N.GEN
+	20	dumu	dumu[child]	N	N
+	21	ur-ab-ba-ke4	_[Ur-abba]	PN	PN.GEN.ERG
+	22	mu-na-dim2	mu-nn-a-dim[create][-ø]	V	VEN.3-SG-H.DAT.3-SG-H-A.V.3-SG-P
+
+	"For Szara, jewel of An, loved child of Inanna, his lord, Ur-..., soldier of the king, son of Ur-Abba, fashioned this for the life of Szusuen, strong king, king of Urim, king of the four quarters"
+
+	or 
+
+	"Ur-..., soldier of the king, son of Ur-Abba, fashioned this for Szara, jewel of An, loved child of Inanna, his lord, for the life of Szusuen, strong king, king of Urim, king of the four quarters"
+
+	or
+
+	"For the life of Szusuen, strong king, king of Urim, king of the four quarters, Ur-..., soldier of the king, son of Ur-Abba, fashioned this for Szara, jewel of An, loved child of Inanna, his lord"
+
+	(word order doesn't matter, both TERM and DAT can be translated as "for", TERM also as "towards")
+
