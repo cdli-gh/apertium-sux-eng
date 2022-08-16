@@ -144,7 +144,7 @@
 <e><p><l>tuggur<s n="n"/></l><r>plow<s n="n"/></r></p></e>
 <e><p><l>geszdu<s n="n"/></l><r>breeding_stock<s n="n"/></r></p></e>
 <e><p><l>situm<s n="n"/></l><r>balance<s n="n"/></r></p></e>
-<e><p><l>mu<s n="n"/></l><r>name<s n="n"/></r></p></e>
+<!-- <e><p><l>mu<s n="n"/></l><r>name<s n="n"/></r></p></e> -->
 <e><p><l>szarrabdu<s n="n"/></l><r>administrator<s n="n"/></r></p></e>
 <e><p><l>udunita<s n="n"/></l><r>ram<s n="n"/></r></p></e>
 <e><p><l>ga<s n="n"/></l><r>suckling<s n="n"/></r></p></e>
@@ -774,7 +774,7 @@
 
 
 
-<e><p><l>dug<s n="vblex"/></l><r>perform<s n="vblex"/></r></p></e>
+<!-- <e><p><l>dug<s n="vblex"/></l><r>perform<s n="vblex"/></r></p></e> -->
 <e><p><l>gaz<s n="vblex"/></l><r>thresh<s n="vblex"/></r></p></e>
 <e><p><l>du<s n="vblex"/></l><r>build<s n="vblex"/></r></p></e>
 <e><p><l>geszgar<s n="vblex"/></l><r>assign<s n="vblex"/></r></p></e>
@@ -866,7 +866,7 @@
 <e><p><l>mu-nn-a-dim<s n="vblex"/></l><r>create<s n="vblex"/></r></p></e>
 <e><p><l>szid<s n="vblex"/></l><r>count<s n="vblex"/></r></p></e>
 <e><p><l>nag<s n="vblex"/></l><r>drink<s n="vblex"/></r></p></e>
-<e><p><l>dug<s n="vblex"/></l><r>good<s n="vblex"/></r></p></e>
+<!-- <e><p><l>dug<s n="vblex"/></l><r>good<s n="vblex"/></r></p></e> -->
 <e><p><l>szula<s n="vblex"/></l><r>entrust<s n="vblex"/></r></p></e>
 <e><p><l>gid<s n="vblex"/></l><r>drag<s n="vblex"/></r></p></e>
 <e><p><l>-gur<s n="vblex"/></l><r>return<s n="vblex"/></r></p></e>
@@ -963,7 +963,7 @@
 <e><p><l>barag<s n="vblex"/></l><r>spread<s n="vblex"/></r></p></e>
 <e><p><l>ba-du<s n="vblex"/></l><r>build<s n="vblex"/></r></p></e>
 <e><p><l>-kur<s n="vblex"/></l><r>enter<s n="vblex"/></r></p></e>
-<e><p><l>dug<s n="vblex"/></l><r>irrigate<s n="vblex"/></r></p></e>
+<!-- <e><p><l>dug<s n="vblex"/></l><r>irrigate<s n="vblex"/></r></p></e> -->
 <e><p><l>us<s n="vblex"/></l><r>follow<s n="vblex"/></r></p></e>
 <e><p><l>tusz<s n="vblex"/></l><r>sit<s n="vblex"/></r></p></e>
 <e><p><l>la<s n="vblex"/></l><r>weigh<s n="vblex"/></r></p></e>

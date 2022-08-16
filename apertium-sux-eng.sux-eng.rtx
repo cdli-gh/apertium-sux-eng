@@ -12,7 +12,7 @@ v2 = mod2 mod3 mod4 mod5 mod6 mod7 fin fin-l1 fin-l2;
 v3 = coor;
 v4 = ven;
 v5 = mid 3-nh;
-v6 = 1-sg 2-sg 3-sg-h 1-pl 3-pl;
+v6 = 1-sg 2-sg 3-sg-h 1-pl 3-pl 3-sg-nh;
 v7 = dat;
 v8 = com;
 v9 = abl term;
@@ -35,9 +35,10 @@ n6 = cop-1-sg cop-2-sg cop-3-sg cop-1-pl cop-2-pl cop-3-pl except;
 
 
 ! chunk categories
-subj_prn  = 1-sg-a 1-sg-s 1-sg-a 1-sg-a-ob 1-pl-a 1-pl-s 2-sg-a 2-sg-s 2-sg-a 2-pl-a 2-pl-s 3-sg-a 3-sg-s 3-sg-s-ob 3-sg-h-a 3-pl-a 3-pl-s; 
-obj_prn = 1-sg-p 1-sg 1-pl 2-sg-p 2-sg 3-sg-p 3-sg-h-p 3-sg-h-l3 3-sg-h 3-sg-nh-p 3-sg-nh-l3 3-nh 3-pl-p 3-pl-h-p 3-pl ;
-
+subj_prn  = 1-sg-a 1-sg-s 1-sg-a 1-sg-a-ob 1-pl-a 1-pl-s 2-sg-a 2-sg-s 2-sg-a 2-pl-a 2-pl-s 3-sg-a 3-sg-s 3-sg-s-ob 3-sg-h-a 3-pl-a 3-pl-s 3-sg-nh-a; 
+obj_prn = 1-sg-p 1-sg 1-pl 2-sg-p 2-sg 3-sg-p 3-sg-h-p 3-sg-h-l3 3-sg-h 3-sg-nh-p 3-sg-nh-l3 3-nh 3-pl-p 3-pl-h-p 3-pl 3-sg-nh;
+inanimate_subj_prn = 3-sg-nh-a;
+inanimate_obj_prn = 3-sg-nh-p 3-sg-nh-l3 3-nh 3-sg-nh;
 
 
 !! ====================================================================== Patterns =================================================================
@@ -54,8 +55,10 @@ np: _.n4.n5.n5_2;
 cnjcoo: _;
 VP: _.subj_prn.obj_prn;
 NP: _.n2.n3.n4.n5.n5_2.n6;
+combined_NP: _.n5.n5_2;
 NU: _;
-PR_NM: _;
+PR_NM: _.n5.n5_2;
+combined_PR_NM: _.n5.n5_2;
 CNJ: _;
 S:_;
 
@@ -112,6 +115,8 @@ subj_pronoun:
                   [prpers@prn.subj.p2.mf.sg _ ]
             else-if ((1.v14 = "2-pl-a") or (1.v14 = "2-pl-s"))
                   [prpers@prn.subj.p2.mf.pl _ ]
+            else-if (1.v11 = "3-sg-nh-a")
+                  [prpers@prn.subj.p3.nt.sg _ ]
             else-if ((1.v14 = "3-sg-a") or (1.v14 = "3-sg-s") or (1.v14 = "3-sg-s-ob") or (1.v11 = "3-sg-h-a"))
                   [prpers@prn.subj.p3.m.sg _ ]
             else-if ((1.v14 = "3-pl-a") or (1.v14 = "3-pl-s"))
@@ -144,6 +149,20 @@ post_subj_preposition:
 
 
 
+! adding pronoun it, in case of it is alreday present with dative or other tags
+mid_prn: 
+      (
+            if ( ( (1.v7 not = "") or (1.v8 not = "") or (1.v9 not = "") or (1.v10 not = "") ) and (1.obj_prn not = "") )
+                  [it@prn _ ]
+            else
+                  []
+      );
+
+
+
+
+
+
 
 ! lemmas before objective pronoun
 pre_obj_preposition:
@@ -155,7 +174,7 @@ pre_obj_preposition:
             else-if (1.v9 = abl)
                   [from@cnjadv _ ]
             else-if (1.v9 = term)
-                  [towards@cnjadv _ ]
+                  [to@cnjadv _ ]
             else-if ((1.v10 = l1) or (1.v10 = l1-syn))
                   [in@cnjadv _ ]
             else-if ((1.v10 = l2) or (1.v10 = l2-syn))
@@ -163,10 +182,11 @@ pre_obj_preposition:
             else-if (1.v10 = l3)
                   [at@cnjadv _ ] 
             else-if (1.v4 = ven)
-                  [towards@cnjadv _ ]
+                  [towards@cnjadv _ ]     
             else
                   []
             );
+
 
 
 
@@ -179,6 +199,12 @@ obj_pronoun:
                   [prpers@prn.obj.p1.mf.pl _ ]
             else-if ((1.v14 = "2-sg-p") or (1.v6 = "2-sg"))
                   [prpers@prn.obj.p2.mf.sg _ ]
+            else-if ( ((1.v9 = abl) or (1.v10 = l2) or (1.v10 = "l2-syn"))  and (1.inanimate_obj_prn not =""))
+                  [there@det _ ]
+            else-if ( ((1.v10 = l1) or (1.v10 = "l1-syn")) and ( (1.inanimate_obj_prn not ="") or (1.inanimate_subj_prn not ="") ) )
+                  [here@det _ ]
+            else-if ((1.v10 = l3) and ( (1.inanimate_obj_prn not ="") or (1.inanimate_subj_prn not ="") ) )
+                  [then@det _ ]
             else-if ((1.v14 = "3-sg-p") or (1.v11 = "3-sg-h-p") or (1.v11 = "3-sg-h-l3") or (1.v6 = "3-sg-h"))
                   [prpers@prn.obj.p3.m.sg _ ]
             else-if ((1.v11 = "3-sg-nh-p") or (1.v11 = "3-sg-nh-l3") or (1.v5 = "3-nh"))
@@ -188,6 +214,11 @@ obj_pronoun:
             else
                   []
             );
+
+
+
+
+
 
 
 
@@ -313,13 +344,47 @@ NU -> num {1};
 
 
 !! Personal Name
-PR_NM -> np {1(demonstrative_proposition) 1(connecting_pronouns) 1(possive_pronouns) 1(pre_noun_preposition) the@det _ 1 };
+PR_NM -> %np {1(demonstrative_proposition) 1(connecting_pronouns) 1(possive_pronouns) 1(pre_noun_preposition) _ 1 };
 
+combined_PR_NM -> %PR_NM {1} |
+                  %PR_NM %PR_NM {1 _ and@cnjadv _ 2};
+
+      
+!! Nouns 
+NP -> %n { 
+      1(demonstrative_proposition) 1(connecting_pronouns) 1(possive_pronouns) 1(pre_noun_preposition) the@det _ 1 
+      };
+
+combined_NP -> %NP %NP {
+      (
+      if (1.n5 not = "")
+            [2 _ 1]
+      else
+            [1 _ 2]
+      )
+} 
+      | %NP {
+             1 
+}; 
 
 !! Verbs
 VP -> %vblex {
-      1(pre_subj_preposition)  1(subj_pronoun) 1(post_subj_preposition)  1  1(pre_obj_preposition) 1(obj_pronoun) 
+      1(pre_subj_preposition)  1(subj_pronoun) 1(post_subj_preposition)  1 _ 1(mid_prn) 1(pre_obj_preposition) 1(obj_pronoun) 
       };
+
+
+
+S -> combined_NP VP { 
+      (
+      if ( (2.subj_prn not = "") and (1.n5_2 = abs) )
+            [ 2 _ 1 ]
+      else
+            [ 1 _ 2 ]
+      )
+}; 
+
+
+
 !|
 !      n %VP { 
 !           ( 
@@ -328,27 +393,6 @@ VP -> %vblex {
 !            else
 !                  [ 1(demonstrative_proposition) 1(connecting_pronouns) 1(possive_pronouns) 1(pre_noun_preposition) the@det _ 1 %2 ]
 !      }
-
-
-!! Nouns 
-NP -> %n { 
-      1(demonstrative_proposition) 1(connecting_pronouns) 1(possive_pronouns) 1(pre_noun_preposition) the@det _ 1 
-      };
-
-
-
-
-
-S -> NP VP { 
-      (
-      if (2.obj_prn = "")
-            [ %2 _ %1 ]
-      else
-            [ %1 _ %2 ]
-      )
-};
-
-
 
 
 ! Noun root
