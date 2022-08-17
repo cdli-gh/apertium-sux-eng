@@ -6,6 +6,7 @@
 	ag (ag2) V "measure"
 	ak V "do"
 	ba V "allot"
+	dim V "create", "fashion"
 	du (du3) V "build"
 	dug V "speak" (also "swear")
 	e (e3) V "leave" (also "remove", if with `ABL`)
@@ -185,6 +186,242 @@ do not translate (no CDLI examples with translation found)
 - `VEN` "towards" (no example with literal translation found)
 - `LOC-OB` is unclear (yet another locative, not in our data)
 
-## nouns (N,PN, ...N)
+### more verbs
 
-## nominalized verbs (NV, NU)
+	mu-na-dim2	mu-nn-a-dim[create][-ø]	V	VEN.3-SG-H.DAT.3-SG-H-A.V.3-SG-P
+	"he (=3.SG-H-A) created it (=3-SG-P) for him (=3-SG-H.DAT)"
+
+P100179
+
+	i3-gal2	i[-ni]-gal[be][-ø]	V	FIN.L1.V.3-SG-S
+	"it (=3-SG-S) is (gal) here (=L1)"
+
+	bi2-in-du8	_[was.caulked.By]	V	3-SG-NH.L3.3-SG-H-A.V.3-SG-P
+	"he (3-SG-H-A) caulked it (=3-SG-P) then (=3-SG-NH.L3)"
+
+## nouns (N,PN, ...N) and nominalized verbs (NF.V ~ adjective; NU = numeral; .PT or .SUB marks nominalization)
+
+translation for the individual cases is clear, right?
+
+in the following examples, syntax has been
+
+P480071 (admin subcorpus)
+
+	s1.col1.1.1	{d}szu-{d}suen	Szusuen[1]	RN	_	_	_
+	s1.col1.2.1	lugal	lugal[king]	N	_	_	_
+	s1.col1.2.2	kal-ga	kalag[strong]-a	NF.V.PT	_	_	_
+	s1.col1.3.1	lugal	lugal[king]	N	_	_	_
+	s1.col1.3.2	uri5{ki}-ma	Urim[1]-ak	SN.GEN	_	_	_
+	s1.col1.4.1	lugal	lugal[king]	N	_	_	_
+	s1.col1.4.2	an-ub-da	anubda[quarter]	N	_	_	_
+	s1.col1.4.3	limmu2-ba	limmu[four]-bi-ak[-ø]	NU.3-SG-NH-POSS.GEN.ABS	_	_	_
+
+	(1) strong king: N or PN before NF.V.PT becomes "adjective noun"
+		noun has no inflection
+		adj can have inflection (for the noun)
+	(2) king of Urim: N before PN in genitive becomes "noun of PN"
+		PN in genitive can carry additional inflection (for the head noun)
+	(3) four quarters: N before NU becomes "NU N", NU can carry additional inflection (here, GEN.ABS) for the head noun
+	(4) king of the four quarters: N before noun (phrase) in genitive becomes "N of NP", here, we evaluate the GEN attribute of immu2-ba
+	(5) X, Y: sequence of noun phrases X Y, only the last has case marking (optional): "X, Y" or "X, the Y"; eventual case marking of the last (here ABS) defines the case of the entire phrase
+	(6) then, check whether it's an argument of a following verb
+
+cf. P500941 (royal subcorpus)
+
+	9	{d}szu-{d}suen	Szusuen[1]	RN	RN
+	10	lugal	lugal[king]	N	N
+	11	kal-ga	kalag[strong]-a	V	NF.V.SUB
+	12	lugal	lugal[king]	N	N
+	13	uri5{ki}-ma	Urim[1]-ak	SN	SN.GEN
+	14	lugal	lugal[king]	N	N
+	15	an	An[1][-ra]	N	N
+	16	ub-da	_	N	N
+	17	limmu2-ba-ka-sze3	_[quarters]	NU	NF.V.3-SG-NH-POSS.GEN.GEN.TERM
+
+the example is exactly the same (except for the entire phrase being GEN.TERM rather than ABS), the annotation is slightly different because it comes from a different subcorpus. the treatment of an-ub-da is an error in the second example, should be as in first)
+
+	"Szusuen, strong king, king of Urim, king of the four quarters"
+
+P500941
+
+	1	{d}szara2	Szara[1][-ak]	DN	DN
+	2	nir-gal2	_[jewel]	N 	N
+	3	an-na	An[1][-ak][-ak][sze]	PN	DN.GEN
+
+
+	"Szara, jewel of An" (An either god or "heaven")
+
+P500941
+	4	dumu	dumu[child]	N	N
+	5	ki-ag2	ki'ag[love][-ø]	V	NF.V
+
+	"loved child" [I guiss this will be tough to disambiguate] (actually, "beloved")
+
+P500941
+	4	dumu	dumu[child]	N	N
+	5	ki-ag2	ki'ag[love][-ø]	V	NF.V
+	6	{d}inanna	Inanna[1][-ak]	DN	DN.GEN
+
+	"loved child of Inanna" 
+
+P500941
+
+	1	{d}szara2	Szara[1][-ak]	DN	DN
+	7	lugal-a-ni-ir	_[his.lord]	N	N.3-SG-H-POSS.DAT-H
+
+	"for (=DAT-H) Szara, his lord"
+
+P500941
+	1	{d}szara2	Szara[1][-ak]	DN	DN
+	2	nir-gal2	_[jewel]	N 	N
+	3	an-na	An[1][-ak][-ak][sze]	PN	DN.GEN
+	4	dumu	dumu[child]	N	N
+	5	ki-ag2	ki'ag[love][-ø]	V	NF.V
+	6	{d}inanna	Inanna[1][-ak]	DN	DN.GEN
+	7	lugal-a-ni-ir	_[his.lord]	N	N.3-SG-H-POSS.DAT-H
+
+	"for Szara, jewel of An, loved child of Inanna, his lord"
+
+P500941
+	8	nam-ti	namtil[life]	N	N
+	9	{d}szu-{d}suen	Szusuen[1]	RN	RN
+	10	lugal	lugal[king]	N	N
+	11	kal-ga	kalag[strong]-a	V	NF.V.SUB
+	12	lugal	lugal[king]	N	N
+	13	uri5{ki}-ma	Urim[1]-ak	SN	SN.GEN
+	14	lugal	lugal[king]	N	N
+	15	an-ub-da	[quarters]	N	N
+	16	limmu2-ba-ka-sze3	[four]-b-ak-ak-sze	NU	NF.V.3-SG-NH-POSS.GEN.GEN.TERM
+
+	"for (=TERM) the life (=nam-ti) of (=2nd GEN in 16) Szusuen, strong king, king of Urim, king of (= first GEN in 16) the four quarters"
+
+P500941
+	17	ur-{d}...	_[1][-ra]	PN	PN
+	18	aga3-us2	aga'us[soldier]	N	N
+	19	lugal	lugal[king][-ak]	N	N.GEN
+	20	dumu	dumu[child]	N	N
+	21	ur-ab-ba-ke4	_[Ur-abba]	PN	PN.GEN.ERG
+
+	"Ur-..., soldier of (=GEN, line 19) the king, son of (=GEN, line 21) Ur-Abba"
+
+P100179
+
+	17	ma2-dara3-abzu	Madara'abzu[1]	ON	ON
+	18	{d}en-ki-ka	Enkik[1][-ak]	DN	DN.GEN.ABS
+
+	"the Madara'abzu of Enki"
+
+	(also "the boat Ibex-of-Apsu of Enki")
+
+## "sentences"
+
+P500941
+
+	# consolidated/train/P500941.conll-# tr.en: For Szara jewel of heaven beloved child of Inanna his lord for life of Szu-Suen strong king king of Ur king of four quarters did Ur- royal soldier son of Ur-abba this fashion
+
+	1	{d}szara2	Szara[1][-ak]	DN	DN
+	2	nir-gal2	_[jewel]	N 	N
+	3	an-na	An[1][-ak][-ak][sze]	PN	DN.GEN
+	4	dumu	dumu[child]	N	N
+	5	ki-ag2	ki'ag[love][-ø]	V	NF.V
+	6	{d}inanna	Inanna[1][-ak]	DN	DN.GEN
+	7	lugal-a-ni-ir	_[his.lord]	N	N.3-SG-H-POSS.DAT-H
+	8	nam-ti	namtil[life]	N	N
+	9	{d}szu-{d}suen	Szusuen[1]	RN	RN
+	10	lugal	lugal[king]	N	N
+	11	kal-ga	kalag[strong]-a	V	NF.V.SUB
+	12	lugal	lugal[king]	N	N
+	13	uri5{ki}-ma	Urim[1]-ak	SN	SN.GEN
+	14	lugal	lugal[king]	N	N
+	15	an-ub-da	[quarters]	N	N
+	16	limmu2-ba-ka-sze3	[four]-b-ak-ak-sze	NU	NF.V.3-SG-NH-POSS.GEN.GEN.TERM
+	17	ur-{d}...	_[1][-ra]	PN	PN
+	18	aga3-us2	aga'us[soldier]	N	N
+	19	lugal	lugal[king][-ak]	N	N.GEN
+	20	dumu	dumu[child]	N	N
+	21	ur-ab-ba-ke4	_[Ur-abba]	PN	PN.GEN.ERG
+	22	mu-na-dim2	mu-nn-a-dim[create][-ø]	V	VEN.3-SG-H.DAT.3-SG-H-A.V.3-SG-P
+
+	"For Szara, jewel of An, loved child of Inanna, his lord, Ur-..., soldier of the king, son of Ur-Abba, fashioned this for the life of Szusuen, strong king, king of Urim, king of the four quarters"
+
+	or 
+
+	"Ur-..., soldier of the king, son of Ur-Abba, fashioned this for Szara, jewel of An, loved child of Inanna, his lord, for the life of Szusuen, strong king, king of Urim, king of the four quarters"
+
+	or
+
+	"For the life of Szusuen, strong king, king of Urim, king of the four quarters, Ur-..., soldier of the king, son of Ur-Abba, fashioned this for Szara, jewel of An, loved child of Inanna, his lord"
+
+	(word order doesn't matter, both TERM and DAT can be translated as "for", TERM also as "towards")
+
+# transactions
+
+most transactions are without verbs. instead, there are key phrases that work like prepositions:
+
+P100179
+
+	2	mu	mu[year]	N	N
+	3	didli	didli[several][-ø][-ak]	V	NF.V.ABS
+
+	"several years"
+
+P100179
+
+	1	pisan-dub-ba	bisagdubak[filing_basket]	N	N
+	2	mu	mu[year]	N	N
+	3	didli	didli[several][-ø][-ak]	V	NF.V.ABS
+	4	sze-ba	szeba[ration]	N	N.ABS
+
+	"filing basket, several years, rations"
+
+P100179
+
+	5	sze	sze[barley]	N	N
+	6	erin2-na	erin[people]	N	N.GEN
+
+	"barley of people" (= "barley of troops")
+
+P100179
+
+	8	sza3-bi	szag[heart]-bi[-ta]	N	N.3-SG-NH-POSS.ABL
+	9	su-ga	sug[repay]-a	V	NF.V.PT
+	10	nig2-ka9	nigSZID[account]	N	N
+	11	sze-ka	_[of.barley]	N	N.GEN
+	"from repayment accounts of barley" lit. "from the heart of repayment accounts of barley"
+
+note that MTAAC annotations put the case for these nominal "prepositions" on the "preposition", not on the end of the phrase. there is a list of such nominal "prepositions", only these act like this.
+
+yes, sza3-bi "heart" is used here like "center", ie., "from the heart of" ! this is not a preposition, but should be translated as such
+
+P100179
+	1	pisan-dub-ba	bisagdubak[filing_basket]	N	N
+	2	mu	mu[year]	N	N
+	3	didli	didli[several][-ø][-ak]	V	NF.V.ABS
+	4	sze-ba	szeba[ration]	N	N
+	5	sze	sze[barley]	N	N
+	6	erin2-na	erin[people]	N	N.GEN
+	7	u3	u[and]	CNJ	CNJ
+	8	sza3-bi	szag[heart]-bi[-ta]	N	N.3-SG-NH-POSS.ABL
+	9	su-ga	sug[repay]-a	V	NF.V.PT
+	10	nig2-ka9	nigSZID[account]	N	N
+	11	sze-ka	_[of.barley]	N	N
+	12	i3-gal2	i[-ni]-gal[be][-ø]	V	FIN.L1.V.3-SG-S
+
+"Filing basket. Several years. Barley rations. Barley of troops and from repayment accounts of barley is here"
+
+# year names
+
+you need a special rule for mu "year":
+
+P100179
+
+	13	mu	mu[year]	N	N
+	14	{d}szu-{d}suen	Szusuen[1]	RN	RN
+	15	lugal	lugal[king]	N	N
+	16	uri5{ki}-ma-ke4	Urim[1]-ak-e	SN	SN.GEN.ERG
+	17	ma2-dara3-abzu	Madara'abzu[1]	ON	ON
+	18	{d}en-ki-ka	Enkik[1][-ak]	DN	DN.GEN.ABS
+	19	bi2-in-du8	_[was.caulked.By]	V	3-SG-NH.L3.3-SG-H-A.V.3-SG-P
+
+	"in (=3-SG-NH.L3) the year (=mu) when (=L3+mu) Szusuen, king of Urim, caulked the Madara'abzu of Enki"
+
