@@ -1,65 +1,18 @@
-! Rules to write
-! 1. if the vblex plural(verb repeates) make the preceddding noun plural
-!
-!
-!
-!
-!
-!
-!
+! Recursive trasnfer rule file from sumerian to english
 
 
 
 
+!================================================================= ATTRIBUTE CATEGORIES ====================================================
 
 
-!!!!!!!!!!!!!!!
-!! ATTRIBUTE CATEGORIES
-!!!!!!!!!!!!!!!
-
-
-
-
-
-
-
-! number will take care of pl and rdp
-! case marker will take care of l1, l2 and l3
-! person will take care of p1, p2 P3
-! Human_NonHuman will same as of noun h, nh used in 
-! ini_pron_pref is similar to to take out the person we are talking about
-
-
-!verb_case_marker = l1 l2 l3;
-!dim_4_marker = ob syn;
-!mod_pref = neg ant stem mod1 mod2 mod3 mod4 mod5 mod6 mod7;
-!dim3_pref = abl term;
-!dim4_pref = [verb_case_marker] loc;
-!fin_pron_pref_a_p = a p ob l3;
-!v_stem = stem cop;
-!pf_marker = pf plen;
-!pron_suf = a subj p; 
-!sub_pref = sub; 
-!Tense = (TS past) pres past pf;
-!fin_marker = fin;
-!coor_pref = coor;
-!vent_pref = ven;
-!mid_pref = mid;
-!persons = p1 p2 p3; 
-!dim1 = dat;
-!dim2 = com;
-
-
-
-Tense = (TN past) past pres;
-
-
+! verb categories
 v1 = neg mod1 ant v-pl v-rdp;
 v2 = mod2 mod3 mod4 mod5 mod6 mod7 fin fin-l1 fin-l2;
 v3 = coor;
 v4 = ven;
 v5 = mid 3-nh;
-v6 = 1-sg 2-sg 3-sg-h 1-pl 3-pl;
+v6 = 1-sg 2-sg 3-sg-h 1-pl 3-pl 3-sg-nh;
 v7 = dat;
 v8 = com;
 v9 = abl term;
@@ -69,76 +22,198 @@ v12 = cop;
 v13 = (past past) pf plen past pres;
 v14 = (3-sg-s 3-sg-s) 1-sg-a 1-sg-s 1-sg-p 2-sg-a 2-sg-s 2-sg-p 3-sg-s 3-sg-p 3-sg-a 3-sg-s-ob 1-pl-a 1-pl-s 1-pl 2-pl-a 2-pl-s 2-pl 3-pl-a 3-pl-s 3-pl-p 3-pl; 
 v15 = sub;
+adj_tag = NF;
 
-
-
-
-Demonstrative = dem dem2 dem3;
-Person = p1 p2 p3;
-Number = (Nm sg) sg pl ord RDP;
-prn_type = (PRN subj) subj obj poss;
-Gender = (GD m) m f mf;
-Human_NonHuman = h nh;
-noun_case_marker = (case_m abs) abs erg dat com abl term l1 l2 l3 l4 gen equ adv;
-Copula = cop except;
-
-
+! noun categories
 n2 = dem dem3;
 n3 = 1-sg-poss 2-sg-poss 3-sg-h-poss 3-sg-nh-poss dem2 1-pl-poss 2-pl-poss 3-pl-poss;
-n4 = (Nm sg) sg pl ord;
-n5 = abs erg dat-h dat-nh com abl term l1 l2-h l2-nh l3-h l3-nh gen equ l4 adv;
+n4 = (sg sg) sg pl ord;
+n5 = dat-h dat-nh com abl term l1 l2-h l2-nh l3-h l3-nh gen equ l4 adv;
+n5_2 = abs erg;
 n6 = cop-1-sg cop-2-sg cop-3-sg cop-1-pl cop-2-pl cop-3-pl except;
 
 
-!!!!!!!!!!!!!!!
-!! Patterns
-!!!!!!!!!!!!!!!
-!! ===== Patterns =============
-!! this is an output pattern, _ denotes the tag iteself like (prn) here,and then the other tags we need
+
+! chunk categories
+subj_prn  = 1-sg-a 1-sg-s 1-sg-a 1-sg-a-ob 1-pl-a 1-pl-s 2-sg-a 2-sg-s 2-sg-a 2-pl-a 2-pl-s 3-sg-a 3-sg-s 3-sg-s-ob 3-sg-h-a 3-pl-a 3-pl-s 3-sg-nh-a; 
+obj_prn = 1-sg-p 1-sg 1-pl 2-sg-p 2-sg 3-sg-p 3-sg-h-p 3-sg-h-l3 3-sg-h 3-sg-nh-p 3-sg-nh-l3 3-nh 3-pl-p 3-pl-h-p 3-pl 3-sg-nh;
+inanimate_subj_prn = 3-sg-nh-a;
+inanimate_obj_prn = 3-sg-nh-p 3-sg-nh-l3 3-nh 3-sg-nh;
+
+
+!! ====================================================================== Patterns =================================================================
+!! this is an output pattern, _ denotes the tag iteself like (prn) here, and then the other tags we need
 !! the subtags may or may not be present, so there can be empty at the place of Person,Gender etc.
 !! Here VP, NP etc are tags to the chunks in reduction rules, 
 
 
 prn: _.prn_type.Person.Gender.Number;
-vP2: _;
-vP14: _.v13.Number;
-vblex: _.v13.Number;
-det: _;
-VP: _.v13.Number;
-NP: _.n4.prn_type;
-SEN:_;
-n: _;
-
-
-
-!! ===== Personal Noun (Names etc) and cnjcoo =============
-np: _;
+vblex: _.v13;
+n:_.n4;
+num:_;
+np: _.n4.n5.n5_2;
 cnjcoo: _;
-
-
-
-
-
-!!!!!!!!!!!!!!!
-!! REDUCTION RULES
-!!!!!!!!!!!!!!!
-
-
-
-
-
-!! Personal Name
-PR_NM: _;
-PR_NM -> np {1};
-
-
-
-
-
-
-!! conjucation
+VP: _.subj_prn.obj_prn.adj_tag;
+NP: _.n2.n3.n4.n5.n5_2.n6;
+combined_NP: _.n5.n5_2;
+NU: _;
+PR_NM: _.n5.n5_2;
+combined_PR_NM: _.n5.n5_2;
 CNJ: _;
-CNJ -> cnjcoo {1};
+S:_;
+
+
+
+! ============================================================================== Macros ====================================================
+! macro are conditional patterns, we define conditions and based on that we can produce output and tags
+
+!!! ===============  1. macro for verbs  ===============
+
+! lemmas that are used pre subjective pronoun
+pre_subj_preposition:
+            (
+            if (1.v1 = neg)
+                  [not@adv _ ]
+
+            else-if ( (1.v1 = mod1) and (1.v13 = pres))
+                  [it@prn is@aux possible@n that@cnjadv _ ]
+
+            else-if ((1.v1 = mod1) and (1.v13 = past))
+                  [it@prn is@aux certain@n that@cnjadv _ ]
+            
+            else-if (1.v1 = ant)
+                  [after@cnjadv _ ]
+            
+            else-if  ((1.v1 = v-pl) or (1.v1 = v-rdp))
+                  [do@vblex _ ]
+
+            else-if (1.v2 = mod2)
+                  [it@vblex is@aux _ ]
+
+            else-if (1.v2 = mod5)
+                  [if@vblex only@aux _ ]
+
+            else-if (1.v2 = mod7)
+                  [if@vblex is@aux certain@aux that@adv _ ]
+
+            else-if (1.v15 = sub)
+                  [that@cnjsubj _]
+            else
+                  []
+            );
+
+
+
+! lemmas subjective pronouns
+subj_pronoun: 
+            (
+            if ( (1.v14 = "1-sg-a") or (1.v14 = "1-sg-s") or (1.v11 = "1-sg-a") or (1.v11 = "1-sg-a-ob") )
+                  [prpers@prn.subj.p1.mf.sg _ ]
+            else-if ( (1.v14 = "1-pl-a") or (1.v14 = "1-pl-s") )
+                  [prpers@prn.subj.p1.mf.pl _ ]
+            else-if ((1.v14 = "2-sg-a") or (1.v14 = "2-sg-s") or (1.v11 = "2-sg-a"))
+                  [prpers@prn.subj.p2.mf.sg _ ]
+            else-if ((1.v14 = "2-pl-a") or (1.v14 = "2-pl-s"))
+                  [prpers@prn.subj.p2.mf.pl _ ]
+            else-if (1.v11 = "3-sg-nh-a")
+                  [prpers@prn.subj.p3.nt.sg _ ]
+            else-if ((1.v14 = "3-sg-a") or (1.v14 = "3-sg-s") or (1.v14 = "3-sg-s-ob") or (1.v11 = "3-sg-h-a"))
+                  [prpers@prn.subj.p3.m.sg _ ]
+            else-if ((1.v14 = "3-pl-a") or (1.v14 = "3-pl-s"))
+                  [prpers@prn.subj.p3.m.pl _ ]
+            else
+                  []
+            );
+
+
+
+! lemmas which are required after subjective pronoun or are connected to subjective pronouns
+post_subj_preposition:
+            (
+            if (1.v2 = mod3)
+                  [do@vblex not@adv _ ]
+            else-if (1.v2 = mod2)
+                  [intention@n to@n _ ]
+            else-if (1.v2 = mod4)
+                  (
+                  if (1.v13 = past)
+                        [certainly@adv  _ not@adv _ ]
+                  else
+                        [will@vblex.inf  _ not@adv _ ]
+                  )
+            else-if (1.v5 = mid)
+                  [was@vblex _ ]
+            else
+                  []
+            );
+
+
+
+! adding pronoun it, in case of it is alreday present with dative or other tags
+mid_prn: 
+      (
+            if ( ( (1.v7 not = "") or (1.v8 not = "") or (1.v9 not = "") or (1.v10 not = "") ) and (1.obj_prn not = "") )
+                  [it@prn _ ]
+            else
+                  []
+      );
+
+
+
+
+
+
+
+! lemmas before objective pronoun
+pre_obj_preposition:
+            (
+            if (1.v7 = dat)
+                  [for@cnjadv _ ]
+            else-if (1.v8 = com)
+                  [with@cnjadv _ ]
+            else-if (1.v9 = abl)
+                  [from@cnjadv _ ]
+            else-if (1.v9 = term)
+                  [to@cnjadv _ ]
+            else-if ((1.v10 = l1) or (1.v10 = l1-syn))
+                  [in@cnjadv _ ]
+            else-if ((1.v10 = l2) or (1.v10 = l2-syn))
+                  [on@cnjadv _ ]
+            else-if (1.v10 = l3)
+                  [at@cnjadv _ ] 
+            else-if (1.v4 = ven)
+                  [towards@cnjadv _ ]     
+            else
+                  []
+            );
+
+
+
+
+! objective lemmas pronouns
+obj_pronoun:
+            (
+            if ((1.v14 = "1-sg-p") or (1.v6 = "1-sg"))
+                  [prpers@prn.obj.p1.mf.sg _ ]
+            else-if (1.v6 = "1-pl")
+                  [prpers@prn.obj.p1.mf.pl _ ]
+            else-if ((1.v14 = "2-sg-p") or (1.v6 = "2-sg"))
+                  [prpers@prn.obj.p2.mf.sg _ ]
+            else-if ( ((1.v9 = abl) or (1.v10 = l2) or (1.v10 = "l2-syn"))  and (1.inanimate_obj_prn not =""))
+                  [there@det _ ]
+            else-if ( ((1.v10 = l1) or (1.v10 = "l1-syn")) and ( (1.inanimate_obj_prn not ="") or (1.inanimate_subj_prn not ="") ) )
+                  [here@det _ ]
+            else-if ((1.v10 = l3) and ( (1.inanimate_obj_prn not ="") or (1.inanimate_subj_prn not ="") ) )
+                  [then@det _ ]
+            else-if ((1.v14 = "3-sg-p") or (1.v11 = "3-sg-h-p") or (1.v11 = "3-sg-h-l3") or (1.v6 = "3-sg-h"))
+                  [prpers@prn.obj.p3.m.sg _ ]
+            else-if ((1.v11 = "3-sg-nh-p") or (1.v11 = "3-sg-nh-l3") or (1.v5 = "3-nh"))
+                  [prpers@prn.obj.p3.nt.sg _ ]
+            else-if ((1.v14 = "3-pl-p") or (1.v11 = "3-pl-h-p") or (1.v6 = "3-pl"))
+                  [prpers@prn.obj.p3.m.pl _ ]
+            else
+                  []
+            );
 
 
 
@@ -147,10 +222,11 @@ CNJ -> cnjcoo {1};
 
 
 
-!! Noun Output
 
-NP -> n { 
+!!! ===============  1. macro for nouns  ===============
 
+! this,that before noun
+demonstrative_proposition:
       (
             if ((1.n2 = dem) or (1.n3 = dem2))
                   [this@adv _ ]
@@ -158,8 +234,11 @@ NP -> n {
                   [that@adv _ ]
             else
                   []
-      )
+      );
 
+
+! connecting pronouns (copula - connecting verbs)
+connecting_pronouns: 
       (
             if (1.n6 = "cop-1-sg")
                   [prpers@prn.poss.p1.mf.sg _ am@pprn _ ]
@@ -175,7 +254,14 @@ NP -> n {
                   [prpers@prn.poss.p3.mf.pl _ are@vbser _ ]
             else
                   []
-      )
+      );
+
+
+
+
+
+! possive pronouns before nouns
+possive_pronouns:
 
       (
             if (1.n3 = "1-sg-poss")
@@ -194,7 +280,12 @@ NP -> n {
                   [prpers@prn.poss.p3.mf.pl _ ]
             else
                   []
-      )
+      );
+
+
+
+! case marker
+pre_noun_preposition:
 
       (
             if (1.n5 = "dat-h")
@@ -225,165 +316,141 @@ NP -> n {
                   [in@cnjadv the@det manner@n of@gen _ ]
             else
                   [ ]
+      );
 
-      )
 
-! Noun root
 
-      (
-            if ((1.n5 = abs) and (1.n5 not = erg))
-                 [ _ 1[n4=subj] ]
-            else-if ((1.n5 = abs) and (1.n5 = erg))
-                 [ _ 1[n4=obj] ]
-            else
-                 [ _ 1 ]
 
-      )
+
+
+
+
+
+
+
+
+
+
+
+!! ==================================================================== REDUCTION RULES ================================================================
+
+
+!! conjucation
+CNJ -> cnjcoo {1};
+
+
+!! numericals
+NU -> num {1};
+
+
+!! Personal Name
+PR_NM -> %np {1(demonstrative_proposition) 1(connecting_pronouns) 1(possive_pronouns) 1(pre_noun_preposition) _ 1 };
+
+! when 2 nameed entities are together
+combined_PR_NM -> %PR_NM {1} |
+                  %PR_NM %PR_NM {1 _ and@cnjadv _ 2};
+
+      
+!! Nouns 
+NP -> %n { 
+      1(demonstrative_proposition) 1(connecting_pronouns) 1(possive_pronouns) 1(pre_noun_preposition) the@det _ 1 
       };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-!! Verb Output
-! 1. checking sub (this/that etc)
-! 2. check if there is a subject in a verb, if sub print it (here i need to rest number(sg,pl) of subject)
-
-
-VP -> vblex {
-
-! lemmas that are used pre subjective pronoun
-
-            (if (1.v1 = neg)
-                  [not@adv _ ]
-
-            else-if ( (1.v1 = mod1) and (1.v13 = pres))
-                  [it@prn is@aux possible@n that@cnjadv _ ]
-
-            else-if ((1.v1 = mod1) and (1.v13 = past))
-                  [it@prn is@aux certain@n that@cnjadv _ ]
-            
-            else-if (1.v1 = ant)
-                  [after@cnjadv _ ]
-            
-            else-if  ((1.v1 = v-pl) or (1.v1 = v-rdp))
-                  [do@vblex _ ]
-
-            else-if (1.v2 = mod2)
-                  [it@vblex is@aux]
-
-            else-if (1.v2 = mod5)
-                  [if@vblex only@aux]
-
-            else-if (1.v2 = mod7)
-                  [if@vblex is@aux certain@aux that@adv]
-
-            else-if (1.v15 = sub)
-                  [that@cnjsubj _]
-            else
-                  []
-            )
-
-! lemmas subjective pronouns
-
-            (
-            if ( (1.v14 = "1-sg-a") or (1.v14 = "1-sg-s") or (1.v11 = "1-sg-a") or (1.v11 = "1-sg-a-ob") )
-                  [prpers@prn.subj.p1.mf.sg _ ]
-            else-if ( (1.v14 = "1-pl-a") or (1.v14 = "1-pl-s") )
-                  [prpers@prn.subj.p1.mf.pl _ ]
-            else-if ((1.v14 = "2-sg-a") or (1.v14 = "2-sg-s") or (1.v11 = "2-sg-a"))
-                  [prpers@prn.subj.p2.mf.sg _ ]
-            else-if ((1.v14 = "2-pl-a") or (1.v14 = "2-pl-s"))
-                  [prpers@prn.subj.p2.mf.pl _ ]
-            else-if ((1.v14 = "3-sg-a") or (1.v14 = "3-sg-s") or (1.v14 = "3-sg-s-ob") or (1.v11 = "3-sg-h-a"))
-                  [prpers@prn.subj.p3.m.sg _ ]
-            else-if ((1.v14 = "3-pl-a") or (1.v14 = "3-pl-s"))
-                  [prpers@prn.subj.p3.m.pl _ ]
-            else
-                  []
-            )
-
-! lemmas which are required after subjective pronoun or are connected to subjective pronouns
-
-            (
-            if (1.v2 = mod3)
-                  [do@vblex not@adv]
-            else-if (1.v2 = mod2)
-                  [intention@n to@n]
-            else-if (1.v2 = mod4)
-                  (
-                  if (1.v13 = past)
-                        [certainly@adv  _ not@adv]
-                  else
-                        [will@vblex.inf  _ not@adv]
-                  )
-            else
-                  []
-            )
-
-
-
-! the verb 
-            _ 1 _
-
-
-
-! lemmas before objective pronoun
-
-            (
-            if (1.v4 = ven)
-                  [towards@cnjadv _ ]
-            if (1.v7 = dat)
-                  [for@cnjadv _ ]
-            if (1.v8 = com)
-                  [with@cnjadv _ ]
-            if (1.v9 = abl)
-                  [from@cnjadv _ ]
-            if (1.v9 = term)
-                  [towards@cnjadv _ ]
-            if ((1.v10 = l1) or (1.v10 = l1-syn))
-                  [in@cnjadv]
-            if ((1.v10 = l2) or (1.v10 = l2-syn))
-                  [on@cnjadv]
-            if (1.v10 = l3)
-                  [at@cnjadv] 
-            )
-
-
-
-! objective lemmas pronouns
-            (
-            if ((1.v14 = "1-sg-p") or (1.v6 = "1-sg"))
-                  [prpers@prn.obj.p1.mf.sg _ ]
-            else-if (1.v6 = "1-pl")
-                  [prpers@prn.obj.p1.mf.pl _ ]
-            else-if ((1.v14 = "2-sg-p") or (1.v6 = "2-sg"))
-                  [prpers@prn.obj.p2.mf.sg _ ]
-            else-if ((1.v14 = "3-sg-p") or (1.v11 = "3-sg-h-p") or (1.v11 = "3-sg-h-l3") or (1.v6 = "3-sg-h"))
-                  [prpers@prn.obj.p3.m.sg _ ]
-            else-if ((1.v11 = "3-sg-nh-p") or (1.v11 = "3-sg-nh-l3") or (1.v5 = "3-nh"))
-                  [prpers@prn.obj.p3.nt.sg _ ]
-            else-if ((1.v14 = "3-pl-p") or (1.v11 = "3-pl-h-p") or (1.v6 = "3-pl"))
-                  [prpers@prn.obj.p3.m.pl _ ]
-            else
-                  []
-            )
+! when 2 nouns are together
+combined_NP -> %NP %NP {
+      (
+      if (1.n5 not = "")
+            [2 _ 1]
+      else
+            [1 _ 2]
+      )
+} 
+      | %NP {
+             1 
 };
 
 
 
+!! Verbs
+VP -> combined_PR_NM %vblex {
+            (
+            if ( (2.subj_prn not = "") and (1.n5_2 = abs) )
+                  [ 2(pre_subj_preposition)  2(subj_pronoun) 2(post_subj_preposition)  2 _ 2(mid_prn) 2(pre_obj_preposition) 2(obj_pronoun) _ 1 _ ]
+            else
+                  [2(pre_subj_preposition)  _ 1 _ 2(post_subj_preposition)  2 _ 2(mid_prn) 2(pre_obj_preposition) 2(obj_pronoun)]
+            )
+      } |
+      combined_NP %vblex {
+            (
+            if ( (2.subj_prn not = "") and (1.n5_2 = abs) )
+                  [ 2(pre_subj_preposition)  2(subj_pronoun) 2(post_subj_preposition)  2 _ 2(mid_prn) 2(pre_obj_preposition) 2(obj_pronoun) _ 1 _ ]
+            else
+                  [2(pre_subj_preposition)  _ 1 _ 2(post_subj_preposition)  2 _ 2(mid_prn) 2(pre_obj_preposition) 2(obj_pronoun)]
+            )
+      } |
+      %vblex {
+            1(pre_subj_preposition)  1(subj_pronoun) 1(post_subj_preposition)  1 _ 1(mid_prn) 1(pre_obj_preposition) 1(obj_pronoun) 
+            } ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+!! ===================================================== EXTRA RULES COMMENTED (May need later) ================================================================
+
+
+!! Verbs
+!VP -> %vblex {
+!      1(pre_subj_preposition)  1(subj_pronoun) 1(post_subj_preposition)  1 _ 1(mid_prn) 1(pre_obj_preposition) 1(obj_pronoun) 
+!      };
+
+
+!S -> combined_NP VP { 
+!      (
+!      if ( (2.subj_prn not = "") and (1.n5_2 = abs) )
+!            [ 2 _ 1 ]
+!      else-if (2.adj_tag not = "")
+!            [ 2 _ 1 ]
+!      else
+!            [ 1 _ 2 ]
+!      )
+!}; 
+
+! Noun root
+!      (
+!            if ((1.n5 = abs) and (1.n5 not = erg))
+!                 [ _ 1[n4=subj] ]
+!            else-if ((1.n5 = abs) and (1.n5 = erg))
+!                [ _ 1[n4=obj] ]
+!            else
+!                 [ _ 1[prn_type = indobj] ]
+!
+!      )
+!      };
+
+
+! SEN -> NP VP {
+!      (
+!            if (1.prn_type=indobj)
+!            [2 _ 1]
+!            else
+!            [1 _ 2]
+!      )
+!      };
 
 
 !! The final order we need
@@ -397,47 +464,6 @@ VP -> vblex {
 !            subj@n 
 !            )
 !            _ 1 };
-
-
-
-
-!! =============================================================================
-!! Default Examples and patterns
-
-!!!!!!!!!!!!!!!
-!! OUTPUT PATTERNS
-!!!!!!!!!!!!!!!
-
-!n: _.gender.number;
-!adj: _.gender.number;
-!det_default: _.det_type;
-!det_def: _.det_type.number;
-!NP: _.number;
-
-!!!!!!!!!!!!!!!
-!! TAG-REWRITE RULES
-!!!!!!!!!!!!!!!
-
-!tense > tense : ifi past, pri pres, fti fut;
-
-!!!!!!!!!!!!!!!
-!! MACROS
-!!!!!!!!!!!!!!!
-
-!det: (if (1.det_type = def or 1.det_type = ind)
-!         1(det_def)
-!      else
-!         1(det_default));
-
-!!!!!!!!!!!!!!!
-!! REDUCTION RULES
-!!!!!!!!!!!!!!!
-
-! Example rule:
-! Input:  ^ראש<n><m><sg>/hovud<n><nt><sg>$ ^גדול<adj><m><sg>/stor<adj><m><sg>$
-! Output: ^stor<adj><nt><sg>$ ^hovud<n><nt><sg>$
-! NP -> n.$number adj { 2[gender=1.gender, number=1.number] _ 1 } ;
-
 
 
 ! Resources:
