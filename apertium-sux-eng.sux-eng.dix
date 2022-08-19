@@ -132,6 +132,20 @@
 
 <section id="main" type="standard">
 <!-- Nouns -->
+<e><p><l>sza3_bi<s n="n"/></l><r>heart<s n="n"/></r></p></e>
+<e><p><l>lugal<s n="n"/></l><r>king<s n="n"/></r></p></e>
+<e><p><l>pisan_dub_ba<s n="n"/></l><r>filing_basket<s n="n"/></r></p></e>
+<e><p><l>sze<s n="n"/></l><r>barley<s n="n"/></r></p></e>
+<e><p><l>mu<s n="n"/></l><r>year<s n="n"/></r></p></e>
+<e><p><l>dumu<s n="n"/></l><r>child<s n="n"/></r></p></e>
+<e><p><l>nir_gal2<s n="n"/></l><r>jewel<s n="n"/></r></p></e>
+<e><p><l>sze_ba<s n="n"/></l><r>ration<s n="n"/></r></p></e>
+<e><p><l>erin2_na<s n="n"/></l><r>people<s n="n"/></r></p></e>
+<e><p><l>lugal_a_ni_ir<s n="n"/></l><r>lord<s n="n"/></r></p></e>
+<e><p><l>an_ub_da<s n="n"/></l><r>quarter<s n="n"/></r></p></e>
+<e><p><l>sze_ka<s n="n"/></l><r>barley<s n="n"/></r></p></e>
+
+
 <e><p><l>ka_guru7<s n="n"/></l><r>supervisor<s n="n"/></r></p></e>
 <e><p><l>gab2_ra<s n="n"/></l><r>rider<s n="n"/></r></p></e>
 <e><p><l>im_ku3_sig17<s n="n"/></l><r>orpiment<s n="n"/></r></p></e>
@@ -956,6 +970,15 @@
 <e><p><l>hulu<s n="vblex"/></l><r>destroy<s n="vblex"/></r></p></e>
 <e><p><l>sa<s n="vblex"/></l><r>pay<s n="vblex"/></r></p></e>
 <e><p><l>ur3<s n="vblex"/></l><r>erase<s n="vblex"/></r></p></e>
+<e><p><l>dim2<s n="vblex"/></l><r>create<s n="vblex"/></r></p></e>
+<e><p><l>du8<s n="vblex"/></l><r>caulked<s n="vblex"/></r></p></e>
+<e><p><l>ki_ag2<s n="vblex"/></l><r>love<s n="vblex"/></r></p></e>
+<e><p><l>nir_gal2<s n="vblex"/></l><r>jewel<s n="vblex"/></r></p></e>
+<e><p><l>didli<s n="vblex"/></l><r>several<s n="vblex"/></r></p></e>
+<e><p><l>kal_ga<s n="vblex"/></l><r>strong<s n="vblex"/></r></p></e>
+
+
+
 
 
 
@@ -1238,7 +1261,21 @@
 
 
 
+
+
 <!-- named enities -->
+<e><p><l>Szara<s n="np"/></l><r>Szara<s n="np"/></r></p></e>
+<e><p><l>An<s n="np"/></l><r>An<s n="np"/></r></p></e>
+<e><p><l>Enkik<s n="np"/></l><r>Enkik<s n="np"/></r></p></e>
+<e><p><l>Szusuen<s n="np"/></l><r>Szusuen<s n="np"/></r></p></e>
+<e><p><l>Urim<s n="np"/></l><r>Urim<s n="np"/></r></p></e>
+<e><p><l>Inanna<s n="np"/></l><r>Inanna<s n="np"/></r></p></e>
+<e><p><l>Madara'abzu<s n="np"/></l><r>Madara'abzu<s n="np"/></r></p></e>
+
+
+
+
+
 <e><p><l>Alulu<s n="np"/></l><r>Alulu<s n="np"/></r></p></e>
 <e><p><l>Utubara<s n="np"/></l><r>Utubara<s n="np"/></r></p></e>
 <e><p><l>E'iluruguda<s n="np"/></l><r>E'iluruguda<s n="np"/></r></p></e>
@@ -2211,6 +2248,8 @@
 
 
 <!-- Numbers -->
+<e><p><l>limmu<s n="num"/></l><r>four<s n="num"/></r></p></e>
+
 <e><p><l>1(asz)<s n="num"/></l><r>one<s n="num"/></r></p></e>
 <e><p><l>1(asz@c)<s n="num"/></l><r>one<s n="num"/></r></p></e>
 <e><p><l>igi6(disz)<s n="num"/></l><r>one<s n="num"/></r></p></e>
