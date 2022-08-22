@@ -61,8 +61,8 @@ VP: _.v1.v2.v3.v4.v5.v6.v7.v8.v9.v10.v11.v12.v13.v14.v15.adj_tag_1.adj_tag_2;
 NP: _.n2.n3.n4.n5.n5_2.n6;
 combined_NP: _.n5.n5_2;
 NU: _.n2.n3.n4.n5.n5_2.n6;
-PR_NM: _.n2.n3.n4.n5.n5_2.n6;
-combined_PR_NM: _.n2.n3.n4.n5.n5_2.n6;
+PR_NM: _.n2.n3.n4.n5.n5_2.n6.names;
+combined_PN_NP_NU: _.n4.n5_2.names;
 CNJ: _;
 S:_;
 
@@ -355,70 +355,56 @@ NU -> %num { 1(demonstrative_proposition) 1(connecting_pronouns) 1(pre_noun_prep
 !! Personal Name
 PR_NM -> %np {1(demonstrative_proposition) 1(connecting_pronouns) 1(pre_noun_preposition) 1(possive_pronouns)  _ 1 };
 
-
-
-! when 2 nameed entities are together
-combined_PR_NM -> %PR_NM %PR_NM {
-                        (
-                              if (1.n5 not = "")
-                                    [2 _ 1]
-                              else-if ( (1.names = pn) and (2.names=pn) )
-                                    [1 _ and@cnjadv _ 2]
-                              else
-                                    [1 _ 2]
-                        )
-                  } |
-                  %PR_NM {1};
-
-      
 !! Nouns 
 NP -> %n { 
       1(demonstrative_proposition) 1(connecting_pronouns) 1(pre_noun_preposition) 1(possive_pronouns)  _ 1 
       };
 
+! when nameed entities and nouns are together
+combined_PN_NP_NU -> %PR_NM.*.pn %PR_NM.*.pn {
+                        1 _ and@cnjadv _ 2
+                  } |
+                  %NP %NP.*.gen {
+                       1 _ 2
+                  } |
+                  %NP %PR_NM.*.gen {
+                       1 _ 2
+                  } |
+                  %PR_NM %PR_NM.*.gen {
+                       1 _ 2
+                  } |
+                  %NP %NU { 
+                        2 _ 1 
+                  } |
+                  %PR_NM {
+                        1
+                  } | 
+                  %NP {
+                        1
+                  };
+
 
 
 !! Verbs
-VP -> %NP %vblex {
-            (
-            if ( ( (2.subj_prn not = "") and (1.n5_2 = abs) ) or ( (2.adj_tag_1 = nf) ) )
-                  [2(pre_subj_preposition)  2(subj_pronoun)  2(post_subj_preposition)  2 _ 1 _ ]
-            else
-                  [2(pre_subj_preposition)  _ 1 _ 2(post_subj_preposition)  2 _ 2(mid_prn) 2(pre_obj_preposition) 2(obj_pronoun)]
-            )
-      } | %combined_PR_NM %vblex {
-            (
-            if ( ( (2.subj_prn not = "") and (1.n5_2 = abs) ) or ( (2.adj_tag_1 = nf) ) )
-                  [2(pre_subj_preposition)  2(subj_pronoun)  2(post_subj_preposition)  2 _ 1 _ ]
-            else
-                  [2(pre_subj_preposition)  _ 1 _ 2(post_subj_preposition)  2 _ 2(mid_prn) 2(pre_obj_preposition) 2(obj_pronoun)]
-            )
+VP -> %combined_PN_NP_NU.*.erg %combined_PN_NP_NU.*.abs %vblex {
+            1(pre_subj_preposition)  1 1(post_subj_preposition) _ 3 _ 1(mid_prn) 1(pre_obj_preposition) 2
       } |
-      %combined_PR_NM %vblex {
+      %combined_PN_NP_NU.*.abs %combined_PN_NP_NU.*.erg %vblex {
+            1(pre_subj_preposition)  2 1(post_subj_preposition) _ 3 _ 1(mid_prn) 1(pre_obj_preposition) 1
+      } |
+      %combined_PN_NP_NU %vblex {
             (
-            if ( ( (2.subj_prn not = "") and (1.n5_2 = abs) ) or ( (2.adj_tag_1 = nf)  ) )
-                  [ 2(pre_subj_preposition)  2(subj_pronoun) 2(post_subj_preposition)  2 _ 2(mid_prn) 2(pre_obj_preposition) 2(obj_pronoun) _ 1 _ ]
+            if ( ( (2.subj_prn not = "") and (1.n5_2 = abs) ) or ( (2.adj_tag_1 = nf) ) )
+                  [2(pre_subj_preposition)  2(subj_pronoun)  2(post_subj_preposition)  2 _ 1 _ ]
             else
                   [2(pre_subj_preposition)  _ 1 _ 2(post_subj_preposition)  2 _ 2(mid_prn) 2(pre_obj_preposition) 2(obj_pronoun)]
             )
       } |
       %vblex {
             1(pre_subj_preposition)  1(subj_pronoun) 1(post_subj_preposition)  1 _ 1(mid_prn) 1(pre_obj_preposition) 1(obj_pronoun) 
-            } | 
-      %NP %NP {
-            (
-            if (1.n5 not = "")
-                  [2 _ 1]
-            else
-                  [1 _ 2]
-            )
-      } | 
-      %NP {
-             1 
-      } | 
-      %NP %NU { 
-      2 _ 1 
-};
+      }; 
+
+
 
 
 
