@@ -364,6 +364,9 @@ NP -> %n {
 combined_PN_NP_NU -> %PR_NM.*.pn %PR_NM.*.pn {
                         1 _ and@cnjadv _ 2
                   } |
+                  %PR_NM.*.sn %PR_NM.*.sn {
+                        1 _ and@cnjadv _ 2
+                  } |
                   %NP %NP.*.gen {
                        1 _ 2
                   } |
