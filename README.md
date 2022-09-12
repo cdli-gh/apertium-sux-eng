@@ -24,10 +24,29 @@ For Data-Preprocessing refer [sux_preprocessing.ipynb](sux_preprocessing.ipynb)
 **Note -**  The current sux(Sumerian) morph analyzer uses vocab along with tags as it is, as specified in mtaac_gold_corpus. The current sux analyzer can only produce basic morphological analysis. After development this will be replaced by - \
 https://github.com/m-sameer/sumor 
 
-<br>
+<br/>
+
+
+Sumerian Morph Details
+-----------------------------
+MTAAC and CDLI Documentation - \
+https://cdli-gh.github.io/guides/guide_tagsets.html
+
+ETCSRI's Morphological Parsing - \
+http://oracc.museum.upenn.edu/etcsri/parsing/index.html
+
+
+Morphological Chart - \
+https://docs.google.com/spreadsheets/d/1y0_y9HDQNwH0VqDCjjYuUpFsugw4GEybu6Pu01I_D9c/edit#gid=0
+
+Tag Translations - \
+[data/Morph_info_and_samples/tag-translation.tsv](data/Morph_info_and_samples/tag-translation.tsv)
+
+
+<br/>
 
 Requirements
--------------------------------------------------------------------------------
+---------------------------------------------------------------------
 
 You will need the following software installed:
 
@@ -50,6 +69,7 @@ https://wiki.apertium.org/wiki/Installation
 
 
 <br>
+
 
 Compiling
 -------------------------------------------------------------------------------
