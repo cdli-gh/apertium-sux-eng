@@ -342,31 +342,76 @@ det_manager:
 !! ==================================================================== REDUCTION RULES ================================================================
 
 
+
 !! conjucation
+! if some word appears with the tag cnjcoo it will be appeared as it is
+
 CNJ -> cnjcoo {1};
+!--------------------------------
+
+
+
+
+!! Nouns 
+! Noun tag converted into phrase using 4 major components
+! 1. demonstrative_proposition - use of this that, it supposed to be at start
+! 2. connecting_pronouns - pronouns like ("i am", "you are" etc.)
+! 3. pre_noun_preposition - the prepositions which needs to there before the root noun or the possive possive_pronouns (to, for, with etc)
+! 4. possive_pronouns - pronouns like (his,him). 
+
+NP -> %n { 
+      1(demonstrative_proposition) 1(connecting_pronouns) 1(pre_noun_preposition) 1(possive_pronouns)  _ 1 
+      };
+!--------------------------------
+
 
 
 
 !! numericals
+! Number can have case endings and morphologies similar to noun so are handeled same as noun 
+
 NU -> %num { 1(demonstrative_proposition) 1(connecting_pronouns) 1(pre_noun_preposition) 1(possive_pronouns)  _ 1 };
+!---------------------------------
 
 
 
-!! Personal Name
-PR_NM -> %np {1(demonstrative_proposition) 1(connecting_pronouns) 1(pre_noun_preposition) 1(possive_pronouns)  _ 1 };
 
-!! Nouns 
-NP -> %n { 
-      1(demonstrative_proposition) 1(connecting_pronouns) 1(pre_noun_preposition) 1(possive_pronouns)  _ 1 
-      };
 
-! when nameed entities and nouns are together
-combined_PN_NP_NU -> %PR_NM.*.pn %PR_NM.*.pn {
-                        1 _ and@cnjadv _ 2
-                  } |
-                  %PR_NM.*.sn %PR_NM.*.sn {
-                        1 _ and@cnjadv _ 2
-                  } |
+!! Named Entities 
+! proper nouns can have case endings and morphologies similar to noun so are handeled same as noun
+! Some Rules from -  https://github.com/cdli-gh/cfg-parser/blob/master/parse_comm.cfg
+ 
+
+PR_NM ->  mu@n %np.*.pn {
+            (
+                  if (2.lem/sl EndsWith sze3)
+                  [for@det _ the@det _ name@n _ of@cnjadv _ 2]
+                  else
+                  [1(demonstrative_proposition) 1(connecting_pronouns) 1(pre_noun_preposition) 1(possive_pronouns)  _ 1]
+            )
+      } |
+      %np.*.pn maszkim@n{ 
+            administrator@n _ 1
+      } |
+      ki@n %np.*.pn{ 
+            from@cnjadv _ 2
+      } |
+      giri3@n %np.*.pn{ 
+            under@cnjadv _ the@det _ authority@n _ of@cnjadv _ 2
+      } |
+      %np {1(demonstrative_proposition) 1(connecting_pronouns) 1(pre_noun_preposition) 1(possive_pronouns)  _ 1 };
+!---------------------------------
+
+
+
+
+! combining Named Entities, numericals and Nouns
+! 1. when nouns or named entities appears with genative then combine them into single phrase (ex - king of Ur)
+! 2. any named enitites appears together connect tham with "and" (ex.(personal name) - ur-namma and ur-diri)
+! 3. otherwise keep noun or named entitiy as it is
+! 4. if we have non finite verb it acts as an adjective so verb before noun phrase (adj, Noun)
+
+combined_PN_NP_NU -> 
                   %NP %NP.*.gen {
                        1 _ 2
                   } |
@@ -376,7 +421,16 @@ combined_PN_NP_NU -> %PR_NM.*.pn %PR_NM.*.pn {
                   %PR_NM %PR_NM.*.gen {
                        1 _ 2
                   } |
+                  %PR_NM.*.[names] %PR_NM.*.[names] {
+                        1 _ and@cnjadv _ 2
+                  } |
                   %NP %NU { 
+                        2 _ 1 
+                  } |
+                  %NP %vblex.*.nf { 
+                        2 _ 1 
+                  } |
+                  %PR_NM %vblex.*.nf { 
                         2 _ 1 
                   } |
                   %PR_NM {
@@ -385,10 +439,20 @@ combined_PN_NP_NU -> %PR_NM.*.pn %PR_NM.*.pn {
                   %NP {
                         1
                   };
+!---------------------------------
+
+
+
 
 
 
 !! Verbs
+! 1. if we get verb followed by erg and abs (erg,abs,verb) then erg word act as subject, then verb, and abs word act as object (SVO English reordering)
+! 2. if we get verb followed by abs and erg (erg,abs,verb) then again erg word act as subject along with prsubject prepositions of erg word (like this that), 
+! then verb, and abs word act as object (SVO English reordering)
+! 3. If we already have a subjective pronoun in a verb and is followed by an abs then we place (S,V from verb) and noun phrase as object (O) so (SVO). 
+! 4. else, noun phrase acts as a subject, so we replace subject position with noun phrase in verb writing (SVO) 
+
 VP -> %combined_PN_NP_NU.*.erg %combined_PN_NP_NU.*.abs %vblex {
             1(pre_subj_preposition)  1 1(post_subj_preposition) _ 3 _ 1(mid_prn) 1(pre_obj_preposition) 2
       } |
@@ -397,7 +461,7 @@ VP -> %combined_PN_NP_NU.*.erg %combined_PN_NP_NU.*.abs %vblex {
       } |
       %combined_PN_NP_NU %vblex {
             (
-            if ( ( (2.subj_prn not = "") and (1.n5_2 = abs) ) or ( (2.adj_tag_1 = nf) ) )
+            if ( ( (2.subj_prn not = "") and (1.n5_2 = abs) ) )
                   [2(pre_subj_preposition)  2(subj_pronoun)  2(post_subj_preposition)  2 _ 1 _ ]
             else
                   [2(pre_subj_preposition)  _ 1 _ 2(post_subj_preposition)  2 _ 2(mid_prn) 2(pre_obj_preposition) 2(obj_pronoun)]
@@ -419,7 +483,7 @@ VP -> %combined_PN_NP_NU.*.erg %combined_PN_NP_NU.*.abs %vblex {
 
 
 
-!! ===================================================== EXTRA RULES COMMENTED (May need later) ================================================================
+!! ===================================================== EXTRA RULES COMMENTED (May be used/modifed later) ================================================================
 
 
 !! Verbs
