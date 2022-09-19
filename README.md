@@ -322,12 +322,8 @@ Files and data
 
 * [`apertium-sux-eng.sux-eng.dix`](apertium-sux-eng.sux-eng.dix) - Bilingual dictionary
 * [`apertium-sux-eng.sux-eng.rtx`](apertium-sux-eng.sux-eng.rtx) - Structural transfer rules for translating into English
-<!-- * [`apertium-sux-eng.eng-sux.rtx`](apertium-sux-eng.eng-sux.rtx) - Structural transfer rules for translating into Sumerian
-* [`apertium-sux-eng.sux-eng.lrx`](apertium-sux-eng.sux-eng.lrx) - Lexical selection rules for translating into English
-* [`apertium-sux-eng.eng-sux.lrx`](apertium-sux-eng.eng-sux.lrx) - Lexical selection rules for translating into Sumerian
-* [`modes.xml`](modes.xml) - Translation modes -->
-
-
+* [`apertium-basics`](Docs/Apertium-non-recursive/) - Apertium Basics (Docs)
+* [`sumerian-language`](Docs/Sumerian/) - Sumerian Langauge understanding (Docs)
 
 
 
