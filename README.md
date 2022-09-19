@@ -56,7 +56,7 @@ Sumerian Data Source
 ---------------------------------------------
 -------
 - [mtaac_gold_corpus](https://github.com/cdli-gh/mtaac_gold_corpus)
-- [mtaac_gold_corpus](https://github.com/cdli-gh/mtaac_gold_corpus) \
+- [mtaac_syntax_corpus](https://github.com/cdli-gh/mtaac_syntax_corpus/tree/master/parallel/consolidated) \
 For the monolingual dictionary. 
 
 For Data-Preprocessing refer - [sux_dict_prepration.ipynb](Notebooks/sux_dict_prepration.ipynb)
@@ -302,14 +302,18 @@ weight_location = your/downloaded/weight/path
 
 ## Evaluation
 
-The evaluation is done using the BLEU metric on the dev set as mentioned above - \
+The evaluation is done using the BLEU metric on the dev set as mentioned above - 
 
-average bleu score for **rule based** is (19.156, 20.4517)
 
-average bleu score for **neural network** is (18.868, 6.881)
+| Machine Translation System  | Mean  | Median |
+|---|---|---|
+| **rule based**     | 19.156  |  20.4517 |
+|  **neural network** |  18.868 | 6.881  |
 
 *The **mean** and **median** scores for both Rule Based and NMT Engine* \
 *with weightage of (0.75,0.25,0,0) over n-grams*
+
+<br/>
 
 **Note** -  As it can be observed from the bleu scores, the mean scores are almost similar for both Rule based and NMT, but the median score is pretty high for the Rule based engine, which indicates that the overall translation performance for each sentence is somewhat good for rule based engine with respect to NMT which is performing very good for some of the sentences and quite low for the remaining sentences.
 <br>
@@ -334,6 +338,19 @@ For more information
 
 * https://wiki.apertium.org/wiki/Installation
 * https://wiki.apertium.org/wiki/Apertium-recursive/Formalism
+
+<br />
+
+Credits :
+------------------------
+-------
+
+Himanshu Choudhary (Developer) \
+Christian Chiarcos, (Mentor) \
+Émilie Pagé-Perron, (Mentor) \
+Rachit Bansal (Mentor)
+
+
 
 <!-- 
 Help and support
