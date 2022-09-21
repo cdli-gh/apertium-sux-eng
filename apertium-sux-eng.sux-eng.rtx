@@ -399,6 +399,12 @@ PR_NM ->  mu@n %np.*.pn {
       giri3@n %np.*.pn{ 
             under@cnjadv _ the@det _ authority@n _ of@cnjadv _ 2
       } |
+      mu-DU@n %np.*.pn{ 
+            on@cnjadv _ the@det _ account@n _ of@cnjadv _ 2
+      } |
+      mu-DU@n %np.*.dn{ 
+            of@cnjadv _ the@det _ temple@n _ of@cnjadv _ 2
+      } |
       %np {1(demonstrative_proposition) 1(connecting_pronouns) 1(pre_noun_preposition) 1(possive_pronouns)  _ 1 };
 !---------------------------------
 

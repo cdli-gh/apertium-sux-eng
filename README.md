@@ -182,27 +182,37 @@ interpretation: maszkim "administrator" + PN.ABS, i.e., nmod (epithet) of PN.ABS
 
 3. "from PERSON"
 AGENT -> KI PERSON
-ki ab-ba-sa6-ga-ta "from Abbasaga" (P102335), but also ki ab-ba-sa6-ga (P106228, without case marking) 
+ki ab-ba-sa6-ga-ta "from Abbasaga" (P102335), but also ki ab-ba-sa6-ga (P106228, without case marking)
+
+4. mu-DU.PN := "mu-DU" Person
+ person on whose account the transaction took place.
+interpretation: mu-kux(DU) "delivery" + PN.GEN (on account of PN), if it's a god, it means "of the temple of X" where X is **dn**
 
 ```
 PR_NM ->  mu@n %np.*.pn {
             (
-                if (2.lem/sl EndsWith sze3)
-                [for@det _ the@det _ name@n _ of@cnjadv _ 2]
-                else
-                [1(demonstrative_proposition) 1(connecting_pronouns) 1(pre_noun_preposition) 1(possive_pronouns)  _ 1]
+                  if (2.lem/sl EndsWith sze3)
+                  [for@det _ the@det _ name@n _ of@cnjadv _ 2]
+                  else
+                  [1(demonstrative_proposition) 1(connecting_pronouns) 1(pre_noun_preposition) 1(possive_pronouns)  _ 1]
             )
-    } |
-    %np.*.pn maszkim@n{ 
+      } |
+      %np.*.pn maszkim@n{ 
             administrator@n _ 1
-    } |
-    ki@n %np.*.pn{ 
+      } |
+      ki@n %np.*.pn{ 
             from@cnjadv _ 2
-    } |
-    giri3@n %np.*.pn{ 
+      } |
+      giri3@n %np.*.pn{ 
             under@cnjadv _ the@det _ authority@n _ of@cnjadv _ 2
-    } |
-    %np {1(demonstrative_proposition) 1(connecting_pronouns) 1(pre_noun_preposition) 1(possive_pronouns)  _ 1 };
+      } |
+      mu-DU@n %np.*.pn{ 
+            on@cnjadv _ the@det _ account@n _ of@cnjadv _ 2
+      } |
+      mu-DU@n %np.*.dn{ 
+            of@cnjadv _ the@det _ temple@n _ of@cnjadv _ 2
+      } |
+      %np {1(demonstrative_proposition) 1(connecting_pronouns) 1(pre_noun_preposition) 1(possive_pronouns)  _ 1 };
 ```
 
 <br/>
@@ -329,6 +339,12 @@ Files and data
 * [`apertium-basics`](Docs/Apertium-non-recursive/) - Apertium Basics (Docs)
 * [`sumerian-language`](Docs/Sumerian/) - Sumerian Langauge understanding (Docs)
 
+
+
+Adding data
+---------------------------------------------------------------------
+--------
+The data can be added to the dictionaries by adding it in **.conll** file format and running the [sux_dict_prepration.ipynb](Notebooks/sux_dict_prepration.ipynb) file. You also need to clone it --- compile it ( use make ) and then compile  `apertium-sux-eng`. 
 
 
 
